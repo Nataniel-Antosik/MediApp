@@ -106,6 +106,7 @@ public class Main {
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException("Zly pesel");
         }
+        String obraz = "5";
         System.out.println("Wpisz numer telefonu: ");
         String n_telefonu = scan.next();
         System.out.println("Wpisz date urodzenia: ");
@@ -114,8 +115,11 @@ public class Main {
         int ID_p = scan.nextInt();
         System.out.println("Wpisz stanowisko: ");
         String stanowisko = scan.next();
-        String obraz = "5";
-        Pracownik pracownik = new Pracownik(ID,imie,nazwisko,Pesel,obraz,n_telefonu,data_urodzenia,ID_p,stanowisko);
+        System.out.println("Wpisz login: ");
+        String login = scan.next();
+        System.out.println("Wpisz haslo: ");
+        String haslo = scan.next();
+        Pracownik pracownik = new Pracownik(ID,imie,nazwisko,Pesel,obraz,n_telefonu,data_urodzenia,ID_p,stanowisko,login,haslo);
         //trzeba dodać do bazy
     }
 

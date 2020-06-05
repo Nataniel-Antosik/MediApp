@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
     private static Scanner scan = new Scanner(System.in);
     public static HashMap<String, Osoba> Baza = new HashMap<>();
+    public static HashMap<String, Osoba> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
 
     public void dodaj_Pacjenta() {
         System.out.println("Wpisz login: ");

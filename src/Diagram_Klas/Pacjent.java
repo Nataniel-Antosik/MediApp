@@ -14,8 +14,8 @@ public class Pacjent extends Osoba {
 	 *
 	 * @param ID_Pacjenta
 	 */
-	public Pacjent(String Login, String Haslo, int ID,String Imie,String Nazwisko,String Pesel, String Obraz, String Numer_Telefonu, String Data_Urodzenia, int ID_Pacjenta) {
-		super(Login, Haslo, ID, Imie, Nazwisko, Pesel, Obraz, Numer_Telefonu, Data_Urodzenia);
+	public Pacjent(int ID,String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, int ID_Pacjenta) {
+		super(ID, Imie, Nazwisko, Pesel, Numer_Telefonu, Data_Urodzenia);
 		// TODO - implement Pacjent.Pacjent
 		this.ID_Pacjenta = ID_Pacjenta;
 		//throw new UnsupportedOperationException();

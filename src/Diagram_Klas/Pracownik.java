@@ -10,7 +10,8 @@ public class Pracownik extends Osoba {
 	Collection<Wizyta> Wizyta;
 	public int ID_Pracownik;
 	public String Stanowisko;
-
+	public String Login;
+	public String Haslo;
 
 	/**
 	 *
@@ -18,17 +19,22 @@ public class Pracownik extends Osoba {
 	 * @param Stanowisko
 	 */
 	public Pracownik(){}
-	public Pracownik(String Login, String Haslo, int ID, String Imie,String Nazwisko,String Pesel, String Obraz, String Numer_Telefonu, String Data_Urodzenia, int ID_Pracownik, String Stanowisko) {
-		super(Login, Haslo, ID, Imie, Nazwisko, Pesel, Obraz, Numer_Telefonu, Data_Urodzenia);
+	public Pracownik(String Login, String Haslo, int ID, String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, int ID_Pracownik, String Stanowisko) {
+		super(ID, Imie, Nazwisko, Pesel, Numer_Telefonu, Data_Urodzenia);
 		// TODO - implement Pracownik.Pracownik
+		this.Login = Login;
+		this.Haslo = Haslo;
 		this.ID_Pracownik = ID_Pracownik;
 		this.Stanowisko = Stanowisko;
 		//throw new UnsupportedOperationException();
 	}
-
+	public void setLogin(String in) { Login = in; }
+	public void setHaslo(String in) { Haslo = in; }
 	public void setID_Pracownik(int in) { ID_Pracownik = in; }
 	public void setStanowisko(String in) { Stanowisko = in; }
 
+	public String getLogin() { return Login; }
+	public String getHaslo() { return Haslo; }
 	public int getID_Pracownik() { return ID_Pracownik; }
 	public String getStanowisko() { return Stanowisko; }
 

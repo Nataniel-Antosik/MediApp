@@ -8,37 +8,31 @@ public class Osoba {
 	public String Imie;
 	public String Nazwisko;
 	public String Pesel;
-	public String Obraz;
 	public String Numer_Telefonu;
 	public String Data_Urodzenia;
-	public String Login;
-	public String Haslo;
+
 	/**
 	 * 
 	 * @param ID
 	 * @param Imie
 	 * @param Nazwisko
 	 * @param Pesel
-	 * @param Obraz
 	 * @param Numer_Telefonu
 	 * @param Data_Urodzenia
 	 */
-	public Osoba(String Login, String Haslo, int ID, String Imie, String Nazwisko, String Pesel, String Obraz, String Numer_Telefonu, String Data_Urodzenia) {
+	public Osoba(int ID, String Imie, String Nazwisko, String Pesel, String Numer_Telefonu, String Data_Urodzenia) {
 		// TODO - implement Osoba.Osoba
-		this.Login = Login;
-		this.Haslo = Haslo;
+
 		this.ID = ID;
 		this.Imie = Imie;
 		this.Nazwisko = Nazwisko;
 		this.Pesel = Pesel;
-		this.Obraz = Obraz;
 		this.Numer_Telefonu = Numer_Telefonu;
 		this.Data_Urodzenia = Data_Urodzenia;
 		//throw new UnsupportedOperationException();
 	}
 	public Osoba(){}
-	public void setLogin(String in) { Login = in; }
-	public void setHaslo(String in) { Haslo = in; }
+
 	public void setID(int in) { ID = in; }
 	public void setImie(String in) { Imie = in; }
 	public void setNazwisko(String in) { Nazwisko = in; }
@@ -58,17 +52,13 @@ public class Osoba {
 		}
 		Pesel = in;
 	}
-	public void setObraz(String in) { Obraz = in; }
 	public void setNumer_Telefonu(String in) { Numer_Telefonu = in; }
 	public void setData_Urodzenia(String in) { Data_Urodzenia = in; }
 
-	public String getLogin() { return Login; }
-	public String getHaslo() { return Haslo; }
 	public int getID() { return ID; }
 	public String getImie() { return Imie; }
 	public String getNazwisko() { return Nazwisko; }
 	public String getPesel() { return Pesel; }
-	public String getObraz() { return Obraz; }
 	public String getNumer_Telefonu() { return Numer_Telefonu; }
 	public String getData_Urodzenia() { return Data_Urodzenia; }
 

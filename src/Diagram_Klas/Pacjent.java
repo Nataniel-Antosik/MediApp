@@ -33,5 +33,11 @@ public class Pacjent extends Osoba {
 		// TODO - implement Pacjent.Sprawdz_Elektroniczna_Recepte
 		throw new UnsupportedOperationException();
 	}
-
+	public static boolean dodajPacjenta(HashMap<String, Pacjent> Baza2, Pacjent p) {
+		if (Baza2.get(p.getPesel()) == null) {
+			Baza2.put(p.getPesel(), p);
+			return true;
+		}
+		return false;
+	}
 }

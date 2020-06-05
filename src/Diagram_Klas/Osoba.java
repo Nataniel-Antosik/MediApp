@@ -29,7 +29,7 @@ public class Osoba {
 		this.Obraz = Obraz;
 		this.Numer_Telefonu = Numer_Telefonu;
 		this.Data_Urodzenia = Data_Urodzenia;
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 	public Osoba(){}
 	public void setID(int in) { ID = in; }

@@ -81,8 +81,7 @@ public class Rejestracja_pracownikow {
 						System.out.println("(5)Modyfikuj date urodzenia");
 						System.out.println("(6)Modyfikuj email");
 						System.out.println("(7)Modyfikuj stanowisko");
-						System.out.println("(8)Modyfikuj adres zamieszkania");
-						System.out.println("(9)Powrót");
+						System.out.println("(8)Powrót");
 						int wybor2 = scan.nextInt();
 						switch (wybor2) {
 							case 1:
@@ -113,10 +112,6 @@ public class Rejestracja_pracownikow {
 								tmp.setStanowisko(stanowisko);
 								break;
 							case 8:
-								String adresZamieszkania = scan.next();
-								tmp.setadresZamieszkania(adresZamieszkania);
-								break;
-							case 9:
 								s = false;
 						}
 					}

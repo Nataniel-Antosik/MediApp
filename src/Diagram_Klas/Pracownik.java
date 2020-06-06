@@ -5,6 +5,7 @@ import java.util.*;
 public class Pracownik extends Osoba {
 
 	Collection<Badania> Badanie;
+	Collection<Recepta_Elektorniczna> Recepta_Elektroniczna;
 	Collection<Skierowanie> Skierowanie;
 	Collection<Wizyta> Wizyta;
 	public String Stanowisko;

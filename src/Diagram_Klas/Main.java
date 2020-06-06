@@ -9,42 +9,101 @@ public class Main {
     public static HashMap<String, Osoba> Baza = new HashMap<>();
     public static HashMap<String, Pracownik> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
 
-    public void dodaj_Pacjenta() {
-        System.out.println("Wpisz login: ");
-        String login = scan.next();
-        System.out.println("Wpisz haslo: ");
-        String haslo = scan.next();
-        System.out.println("Podaj ID: ");
-        int ID = scan.nextInt();
-        System.out.println("Podaj imie:  ");
-        String imie = scan.next();
-        System.out.println("Podaj nazwisko:  ");
-        String nazwisko = scan.next();
-        System.out.println("Wpisz PESEL: ");
-        String pesel = scan.next();
-        System.out.print("\n");
-        if (pesel.length() != 11) //sprawdzamy długość peselu
-        {
-            throw new NumberFormatException("Wrong PESEL length");
+    public static void dodaj_Pacjenta() {
+        Scanner  stringinput = new Scanner(System.in);
+        Pacjent nowy = new Pacjent();
+        System.out.println("Podaj imie pacjenta:");
+        while(true){
+            String name = stringinput.nextLine();
+            if(name.isEmpty()){
+                continue;
+            }
+            nowy.setImie(name);
+            break;
         }
-        try { //sprawdza czy pesel ma poprawny formay czyli mesiące lata miesiące dni
-            int wart = Integer.parseInt(pesel.substring(2, 4));
-            wart %= 20;
-            if (wart > 12) throw new NumberFormatException("Zly pesel");
-        } catch (NumberFormatException nfe) {
-            throw new NumberFormatException("Zly pesel");
+        System.out.println("Podaj nazwisko pacjenta:");
+        while(true){
+            String surname = stringinput.nextLine();
+            if(surname.isEmpty()){
+                continue;
+            }
+            nowy.setNazwisko(surname);
+            break;
         }
-        System.out.println("Wpisz numer telefonu: ");
-        String n_telefonu = scan.next();
-        System.out.println("Wpisz date urodzenia: ");
-        String data_urodzenia = scan.next();
-        System.out.println("Wpisz ID pacjenta");
-        int ID_p = scan.nextInt();
-        System.out.println("Wpisz maila: ");
-        String mail = scan.next();
-        Pacjent pacjent = new Pacjent(imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p, mail);
-        pacjent.dodajOsoba(Baza, pacjent);
-        //trzeba dodać do bazy
+        System.out.println("Podaj PESEL pacjenta:");
+        while(true){
+            String id = stringinput.nextLine();
+            if(id.isEmpty()){
+                continue;
+            }
+            try {
+                nowy.setPesel(id);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+        System.out.println("Podaj date urodzenia pacjenta:");
+        while(true){
+            String birth = stringinput.nextLine();
+            if(birth.isEmpty()){
+                continue;
+            }
+            nowy.setImie(birth);
+            break;
+        }
+        System.out.println("Podaj adres zamieszkania pacjenta:");
+        while(true){
+            String adress = stringinput.nextLine();
+            if(adress.isEmpty()){
+                continue;
+            }
+            nowy.setImie(adress);
+            break;
+        }
+        System.out.println("Podaj kod pocztowy pacjenta:");
+        while(true){
+            String postCode = stringinput.nextLine();
+            if(postCode.isEmpty()){
+                continue;
+            }
+            nowy.setImie(postCode);
+            break;
+        }
+        System.out.println("Podaj numer telefonu pacjenta:");
+        while(true){
+            String phoneNumber = stringinput.nextLine();
+            if(phoneNumber.isEmpty()){
+                continue;
+            }
+            nowy.setImie(phoneNumber);
+            break;
+        }
+        System.out.println("Podaj adres e-mail pacjenta:");
+        while(true){
+            String email = stringinput.nextLine();
+            if(email.isEmpty()){
+                continue;
+            }
+            nowy.setImie(email);
+            break;
+        }
+        System.out.println("Zatwierdz(1)/Anuluj(0)");
+
+        while(true){
+            String choice;
+            choice =scan.nextLine();
+            if(choice.equals("1")){
+                nowy.dodajOsoba(Baza,nowy);
+                break;
+            }else if(choice.equals("0")){
+                break;
+            }
+            else{
+                continue;
+            }
+        }
     }
     public void dodaj_Pracownika() {
         System.out.println("Wpisz login: ");
@@ -179,110 +238,19 @@ public class Main {
 
     public static void menuRecepcjonista() {
         while (true) {
+
             System.out.println(" MENU ");
             System.out.println("(1) Rejestracja pacjenta");
             System.out.println("(2) Umow wizyte");
             System.out.println("(3) Umowienie wizyty");
-            System.out.println("(4) Profil pracownika");
-            System.out.println("(5) Profil pacjenta");
+            System.out.println("(4) Wyświetl profil pracownika");
+            System.out.println("(5) Wyświetl profil pacjenta");
             System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
-            Scanner  stringinput = new Scanner(System.in);
+
             switch (wybor) {
                 case 1:
-                    Pacjent nowy = new Pacjent();
-                    System.out.println("Podaj imie pacjenta:");
-                    while(true){
-                        String name = stringinput.nextLine();
-                        if(name.isEmpty()){
-                            continue;
-                        }
-                        nowy.setImie(name);
-                        break;
-                    }
-                    System.out.println("Podaj nazwisko pacjenta:");
-                    while(true){
-                        String surname = stringinput.nextLine();
-                        if(surname.isEmpty()){
-                            continue;
-                        }
-                        nowy.setNazwisko(surname);
-                        break;
-                    }
-                    System.out.println("Podaj PESEL pacjenta:");
-                    while(true){
-                        String id = stringinput.nextLine();
-                        if(id.isEmpty()){
-                            continue;
-                        }
-                        try {
-                            nowy.setPesel(id);
-                        }catch(Exception e){
-                            System.out.println(e.getMessage());
-                            continue;
-                        }
-                        break;
-                    }
-                    System.out.println("Podaj date urodzenia pacjenta:");
-                    while(true){
-                        String birth = stringinput.nextLine();
-                        if(birth.isEmpty()){
-                            continue;
-                        }
-                        nowy.setImie(birth);
-                        break;
-                    }
-                    System.out.println("Podaj adres zamieszkania pacjenta:");
-                    while(true){
-                        String adress = stringinput.nextLine();
-                        if(adress.isEmpty()){
-                            continue;
-                        }
-                        nowy.setImie(adress);
-                        break;
-                    }
-                    System.out.println("Podaj kod pocztowy pacjenta:");
-                    while(true){
-                        String postCode = stringinput.nextLine();
-                        if(postCode.isEmpty()){
-                            continue;
-                        }
-                        nowy.setImie(postCode);
-                        break;
-                    }
-                    System.out.println("Podaj numer telefonu pacjenta:");
-                    while(true){
-                        String phoneNumber = stringinput.nextLine();
-                        if(phoneNumber.isEmpty()){
-                            continue;
-                        }
-                        nowy.setImie(phoneNumber);
-                        break;
-                    }
-                    System.out.println("Podaj adres e-mail pacjenta:");
-                    while(true){
-                        String email = stringinput.nextLine();
-                        if(email.isEmpty()){
-                            continue;
-                        }
-                        nowy.setImie(email);
-                        break;
-                    }
-                    System.out.println("Zatwierdz(1)/Anuluj(0)");
-
-                    while(true){
-                        String choice;
-                        choice =scan.nextLine();
-                        if(choice.equals("1")){
-                            //TODO
-                            break;
-                        }else if(choice.equals("0")){
-                            break;
-                        }
-                        else{
-                            continue;
-                        }
-                    }
+                    dodaj_Pacjenta();
                     break;
                 case 2:
 
@@ -294,7 +262,6 @@ public class Main {
 
                     break;
                 case 5:
-                    System.out.println("Podaj PESEL wyszukiwanego pacjenta:");
                     break;
                 case 6: {
 

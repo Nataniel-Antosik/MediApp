@@ -268,6 +268,21 @@ public class Main {
                         nowy.setImie(email);
                         break;
                     }
+                    System.out.println("Zatwierdz(1)/Anuluj(0)");
+
+                    while(true){
+                        String choice;
+                        choice =scan.nextLine();
+                        if(choice.equals("1")){
+                            //TODO
+                            break;
+                        }else if(choice.equals("0")){
+                            break;
+                        }
+                        else{
+                            continue;
+                        }
+                    }
                     break;
                 case 2:
 
@@ -362,17 +377,17 @@ public class Main {
         test2.dodajOsoba(Baza,p);
 
         //test wypisu wszystkich osób (Pracownikow
-        //Baza_Pracownikow.forEach((k, v) ->
-        //        wypiszOsoba(v)
-        //);
+        Baza_Pracownikow.forEach((k, v) ->
+                wypiszOsoba(v)
+        );
         //wypisanie pacjentów
-        //Baza.forEach((k, v) ->
-         //       wypiszOsoba(v)
-        //);
+        Baza.forEach((k, v) ->
+                wypiszOsoba(v)
+        );
 
         //test funkcji weryfikacji
-        //weryfikacja();
-        menuRecepcjonista();
+        weryfikacja();
+        //menuRecepcjonista();
     }
 }
 

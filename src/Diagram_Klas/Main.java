@@ -33,6 +33,8 @@ public class Main {
                 {
                     if (v.getLogin().equals(login)) {
                         tmp.set(v);
+                    } else {
+                        tmp.set(null);
                     }
                 }
         );
@@ -100,15 +102,9 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    Baza_Pracownikow.forEach((k, v) ->
-                            wypiszOsoba(v)
-                    );
                     System.out.println("Wpisz login: ");
                     String login = scan.next();
-                    Rejestracja_pracownikow.usun_Pracownika(login);
-                    Baza_Pracownikow.forEach((k, v) ->
-                            wypiszOsoba(v)
-                    );
+                    Rejestracja_pracownikow.usun_Pracownika(Baza_Pracownikow, login);
                     break;
                 }
                 case 3: {

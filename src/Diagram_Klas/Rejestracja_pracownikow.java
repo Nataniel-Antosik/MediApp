@@ -1,5 +1,6 @@
 package Diagram_Klas;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Rejestracja_pracownikow {
@@ -51,13 +52,8 @@ public class Rejestracja_pracownikow {
 		}
 	}
 
-	public static boolean usun_Pracownika(String login) {
-		if (Main.znajdzPracownika(login).equals(true)){
-			Main.Baza_Pracownikow.remove(login);
-			return true;
-		} else {
-			return false;
-		}
+	public static void usun_Pracownika(HashMap<String, Pracownik> Baza_Pracownikow, String login) {
+			Baza_Pracownikow.remove(login);
 	}
 
 	public static void modyfikuje_Dane_Pracownika() {
@@ -65,35 +61,39 @@ public class Rejestracja_pracownikow {
 		System.out.println("Wpisz login");
 		String login = scan.next();
 		tmp = Main.znajdzPracownika(login);
-		Main.wypiszOsoba(tmp);
-		System.out.println("Edycja pracownika");
-		boolean s=true;
-		while(s) {
-			System.out.println("1) Zmiana nazwiska");
-			System.out.println("2) Zmiana nr_telefonu");
-			System.out.println("3) Zmiana stanowiska");
-			System.out.println("4) Zmiana maila");
-			System.out.println("5) Wyjdz");
-			int wybor2 = scan.nextInt();
-			switch (wybor2) {
-				case 1:
-					String nazwisko = scan.next();
-					tmp.setNazwisko(nazwisko);
-					break;
-				case 2:
-					String nr_telefonu = scan.next();
-					tmp.setNumer_Telefonu(nr_telefonu);
-					break;
-				case 3:
-					String stanowisko = scan.next();
-					tmp.setStanowisko(stanowisko);
-					break;
-				case 4:
-					String mail = scan.next();
-					tmp.setMail(mail);
-					break;
-				case 5:
-					s=false;
+		if (tmp == null) {
+			System.out.println("Nie ma pracownika o takim loginie");
+		} else {
+			Main.wypiszOsoba(tmp);
+			System.out.println("Edycja pracownika");
+			boolean s = true;
+			while (s) {
+				System.out.println("1) Zmiana nazwiska");
+				System.out.println("2) Zmiana nr_telefonu");
+				System.out.println("3) Zmiana stanowiska");
+				System.out.println("4) Zmiana maila");
+				System.out.println("5) Wyjdz");
+				int wybor2 = scan.nextInt();
+				switch (wybor2) {
+					case 1:
+						String nazwisko = scan.next();
+						tmp.setNazwisko(nazwisko);
+						break;
+					case 2:
+						String nr_telefonu = scan.next();
+						tmp.setNumer_Telefonu(nr_telefonu);
+						break;
+					case 3:
+						String stanowisko = scan.next();
+						tmp.setStanowisko(stanowisko);
+						break;
+					case 4:
+						String mail = scan.next();
+						tmp.setMail(mail);
+						break;
+					case 5:
+						s = false;
+				}
 			}
 		}
 	}

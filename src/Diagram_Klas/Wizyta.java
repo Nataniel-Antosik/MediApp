@@ -24,7 +24,6 @@ public class Wizyta {
 		this.Data_Wizyty = Data_Wizyty;
 		this.Status_Wizyty = Status_Wizyty;
 		this.ID_Wizyta = ID_Wizyta;
-		throw new UnsupportedOperationException();
 	}
 
 	//public void setID_Pacjent(Pacjent ID_Pacjent) { ID_Pacjent = ID_Pacjent; }

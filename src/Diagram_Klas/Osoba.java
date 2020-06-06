@@ -30,7 +30,6 @@ public class Osoba {
 		this.Numer_Telefonu = Numer_Telefonu;
 		this.Data_Urodzenia = Data_Urodzenia;
 		this.Mail = Mail;
-		//throw new UnsupportedOperationException();
 	}
 	
 	public Osoba(){}

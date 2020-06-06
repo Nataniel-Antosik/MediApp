@@ -19,6 +19,7 @@ public class Main {
         System.out.println("Numer telefonu: " + o.getNumer_Telefonu());
         System.out.println("Data Urodzenia: " + o.getData_Urodzenia());
         System.out.println("Mail: " + o.getMail());
+        System.out.println("Adres zamieszkania: " + o.getadresZamieszkania());
         if(o instanceof Pracownik) {
             Pracownik p = (Pracownik) o;
             System.out.println("Stanowisko: " + p.getStanowisko());

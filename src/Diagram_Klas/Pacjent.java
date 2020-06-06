@@ -6,6 +6,7 @@ public class Pacjent extends Osoba {
 
 	Skierowanie Skierowanie;
 	Collection<Wizyta> Wizyta;
+	Collection<Recepta_Elektorniczna> Recepta_Elektroniczna;
 	Recepta_Elektorniczna Recepta;
 	Historia_Chorob_Pacjenta Historia;
 

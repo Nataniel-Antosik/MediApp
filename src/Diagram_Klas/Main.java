@@ -14,8 +14,6 @@ public class Main {
         String login = scan.next();
         System.out.println("Wpisz haslo: ");
         String haslo = scan.next();
-        System.out.println("Podaj ID: ");
-        int ID = scan.nextInt();
         System.out.println("Podaj imie:  ");
         String imie = scan.next();
         System.out.println("Podaj nazwisko:  ");
@@ -38,21 +36,28 @@ public class Main {
         String n_telefonu = scan.next();
         System.out.println("Wpisz date urodzenia: ");
         String data_urodzenia = scan.next();
-        System.out.println("Wpisz ID pacjenta");
-        int ID_p = scan.nextInt();
         System.out.println("Wpisz maila: ");
         String mail = scan.next();
-        Pacjent pacjent = new Pacjent(imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p, mail);
-        pacjent.dodajOsoba(Baza, pacjent);
+        int wybor = scan.nextInt();
+        System.out.println("1) Zatwierdz");
+        System.out.println("2) Anuluj");
+        switch (wybor) {
+            case 1:
+                Pacjent pacjent = new Pacjent(imie, nazwisko, pesel, n_telefonu, data_urodzenia, mail);
+                pacjent.dodajOsoba(Baza, pacjent);
+                break;
+            case 2:
+                System.out.println("Anulowano");
+                break;
+        }
+
         //trzeba dodać do bazy
     }
-    public void dodaj_Pracownika() {
+    public static void dodaj_Pracownika() {
         System.out.println("Wpisz login: ");
         String login = scan.next();
         System.out.println("Wpisz haslo: ");
         String haslo = scan.next();
-        System.out.println("Podaj ID: ");
-        int ID = scan.nextInt();
         System.out.println("Podaj imie:  ");
         String imie = scan.next();
         System.out.println("Podaj nazwisko:  ");
@@ -75,14 +80,26 @@ public class Main {
         String n_telefonu = scan.next();
         System.out.println("Wpisz date urodzenia: ");
         String data_urodzenia = scan.next();
-        System.out.println("Wpisz ID pracownika");
-        int ID_p = scan.nextInt();
         System.out.println("Wpisz stanowisko: ");
         String stanowisko = scan.next();
         System.out.println("Wpisz maila: ");
         String mail = scan.next();
-        Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p, stanowisko, mail);
+        Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail);
         pracownik.dodajPracownika(Baza_Pracownikow, pracownik);
+        /*
+        System.out.println("1) Zatwierdz");
+        System.out.println("2) Anuluj");
+        int wybor = scan.nextInt();
+
+        switch (wybor) {
+            case 1:
+                Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail);
+                pracownik.dodajPracownika(Baza_Pracownikow, pracownik);
+                break;
+            case 2:
+                System.out.println("Anulowano");
+                break;
+        }*/
     }
 
     public static void wypiszOsoba(Osoba o) {
@@ -91,19 +108,29 @@ public class Main {
         System.out.println("Pesel: " + o.getPesel());
         System.out.println("Numer telefonu: " + o.getNumer_Telefonu());
         System.out.println("Data Urodzenia: " + o.getData_Urodzenia());
+        System.out.println("Mail: " + o.getMail());
         if(o instanceof Pracownik) {
             Pracownik p = (Pracownik) o;
-            System.out.println("ID Pracownika: " + p.getID_Pracownik());
             System.out.println("Stanowisko: " + p.getStanowisko());
             System.out.println("===========================");
         }
         else if (o instanceof Pacjent){
             Pacjent p = (Pacjent) o;
-            System.out.println("ID Pacjenta: " + p.getID_Pacjenta());
             System.out.println("===========================");
         }
     }
-
+    public static Pracownik znajdzPracownika(String login){
+        AtomicReference<Pracownik> tmp = new AtomicReference<>(new Pracownik());
+        Baza_Pracownikow.forEach((k, v) ->
+                {
+                    if (v.getLogin().equals(login)) {
+                        wypiszOsoba(v);
+                        tmp.set(v);
+                    }
+                }
+        );
+        return tmp.get();
+    }
     public static void menuLekarz() {
         while (true) {
             System.out.println(" MENU ");
@@ -159,15 +186,50 @@ public class Main {
             System.out.println("(1) Dodaj pracownika");
             System.out.println("(2) Profil pracownika");
             System.out.println("(3) Wyloguj");
-            int wybor = scan.nextInt();
 
+            int wybor = scan.nextInt();
             switch (wybor) {
-                case 1:
-                    System.out.println("");
+                case 1: {
+                    dodaj_Pracownika();
                     break;
-                case 2:
-                    System.out.println("Wybrales opcje nr 2");
+                }
+                case 2: {
+                    Pracownik tmp = new Pracownik();
+                    System.out.println("Wpisz login");
+                    String login = scan.next();
+                    tmp = znajdzPracownika(login);
+                    System.out.println("Edycja pracownika");
+                    boolean s=true;
+                    while(s) {
+                        System.out.println("1) Zmiana nazwiska");
+                        System.out.println("2) Zmiana nr_telefonu");
+                        System.out.println("3) Zmiana stanowiska");
+                        System.out.println("4) Zmiana maila");
+                        System.out.println("5) Wyjdz");
+                        int wybor2 = scan.nextInt();
+                        switch (wybor2) {
+                            case 1:
+                                String nazwisko = scan.next();
+                                tmp.setNazwisko(nazwisko);
+                                break;
+                            case 2:
+                                String nr_telefonu = scan.next();
+                                tmp.setNumer_Telefonu(nr_telefonu);
+                                break;
+                            case 3:
+                                String stanowisko = scan.next();
+                                tmp.setStanowisko(stanowisko);
+                                break;
+                            case 4:
+                                String mail = scan.next();
+                                tmp.setMail(mail);
+                                break;
+                            case 5:
+                                s=false;
+                            }
+                        }
                     break;
+                    }
                 case 3:
                     System.out.println("Zostales wylogowany");
                     return;
@@ -275,13 +337,13 @@ public class Main {
         //Dodanie testowych osób do systemu Dyrektora Dermatologa i Pacjenta
         Pracownik test = new Pracownik();
         Pacjent test2 = new Pacjent();
-        Pracownik d = new Pracownik("D168", "123456",68, "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", 1, "Dyrektor" );
+        Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", "Dyrektor", "stef@gmail.com" );
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("L168", "654321",69, "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", 2, "Lekarz");
+        d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", "Lekarz", "Nowakowski@gmail.com");
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("R168", "654321",70, "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88", 3, "Recepcjonista");
+        d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88",  "Recepcjonista", "Szurek@gmail.com");
         test.dodajPracownika(Baza_Pracownikow, d);
-        Pacjent p = new Pacjent(62,"Marian","Kowalski","95041201020","931-321-324","12.04.95",13);
+        Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95", "Marian@gmail.com");
         test2.dodajOsoba(Baza,p);
 
         //test wypisu wszystkich osób (Pracownikow

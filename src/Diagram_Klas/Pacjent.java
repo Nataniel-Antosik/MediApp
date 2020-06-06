@@ -8,30 +8,22 @@ public class Pacjent extends Osoba {
 	Collection<Wizyta> Wizyta;
 	Recepta_Elektorniczna Recepta;
 	Historia_Chorob_Pacjenta Historia;
-	public int ID_Pacjenta;
 
 	/**
 	 *
-	 * @param ID_Pacjenta
+
 	 */
-	public Pacjent(String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, int ID_Pacjenta, String Mail) {
+	public Pacjent(String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, String Mail) {
 		super(Imie, Nazwisko, Pesel, Numer_Telefonu, Data_Urodzenia, Mail);
 		// TODO - implement Pacjent.Pacjent
-		this.ID_Pacjenta = ID_Pacjenta;
-		//throw new UnsupportedOperationException();
 	}
 	public Pacjent(){}
-	public void setID_Pacjenta(int in) { ID_Pacjenta = in; }
-
-	public int getID_Pacjenta() { return ID_Pacjenta; }
-
 	/**
 	 * 
 	 * @param ID_Recepty_Elektronicznej
 	 */
 	public void Sprawdz_Elektroniczna_Recepte(Diagram_Klas.Recepta_Elektorniczna ID_Recepty_Elektronicznej) {
 		// TODO - implement Pacjent.Sprawdz_Elektroniczna_Recepte
-		throw new UnsupportedOperationException();
 	}
 
 }

@@ -9,7 +9,6 @@ public class Rejestracja_Pacjenta {
 	 */
 	public Rejestracja_Pacjenta(Diagram_Klas.Pacjent pacjent, Diagram_Klas.Pracownik ID_Pracownik) {
 
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -18,7 +17,6 @@ public class Rejestracja_Pacjenta {
 	 * @param ID_Pracownik
 	 */
 	public void Usuwanie_Pacjenta(Diagram_Klas.Pacjent pacjent, Diagram_Klas.Pracownik ID_Pracownik) {
-		throw new UnsupportedOperationException();
 	}
 
 }

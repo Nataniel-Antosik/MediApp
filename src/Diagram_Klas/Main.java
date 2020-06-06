@@ -96,38 +96,26 @@ public class Main {
             System.out.println("(1) Wypisz recepte");
             System.out.println("(2) Wypisz skierowanie");
             System.out.println("(3) Wyswietl historie badan");
-            System.out.println("(4) Wyswietl historie chorob");
+            System.out.println("(4) Wyswietl historie chorob pacjenta");
             System.out.println("(5) Wpis w historie chorob");
             System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
 
             switch (wybor) {
                 case 1:
-                    System.out.println("Kogo chcesz dodac?");
-                    System.out.println("(1) Pacjenta");
-                    System.out.println("(2) Pracownika");
-                    int w2 = scan.nextInt();
-                    switch (w2) {
-                        case 1:
-                            System.out.println("Opcja Pacjent");
-                            break;
-                        case 2:
-                            System.out.println("Opcja Pracownik");
-                            break;
-                    }
-                    System.out.println("Wybrales opcje nr 1");
+
                     break;
                 case 2:
-                    System.out.println("Wybrales opcje nr 2");
+
                     break;
                 case 3:
-                    System.out.println("Wybrales opcje nr 3");
+
                     break;
                 case 4:
-                    System.out.println("Wybrales opcje nr 4");
+
                     break;
                 case 5:
-                    System.out.println("Wybrales opcje nr 5");
+
                     break;
                 case 6: {
                     System.out.println("Koniec pracy systemu");
@@ -191,9 +179,7 @@ public class Main {
                     }
                 case 3:
                     System.out.println("Zostales wylogowany");
-                    return;
-                default :
-                    System.out.println("Bledna opcja");
+                    weryfikacja();
             }
         }
     }
@@ -279,18 +265,19 @@ public class Main {
     public static void weryfikacja(){
         final boolean[] l = {false};
         final boolean[] h = {false};
-        System.out.println("Podaj login: ");
-        String login = scan.next();
-        System.out.println("Podaj haslo: ");
-        String haslo = scan.next();
-        l[0] = znajdzLogin(login);
-        h[0] = znajdzHaslo(haslo);
-        if (l[0] && h[0] == true){
-            System.out.println("Zostales zalogowany");
-            odpowiednieMenu(login);
-        }
-        else{
-            System.out.println("Login lub haslo jest bledne, wpisz ponownie");
+        while (true) {
+            System.out.println("Podaj login: ");
+            String login = scan.next();
+            System.out.println("Podaj haslo: ");
+            String haslo = scan.next();
+            l[0] = znajdzLogin(login);
+            h[0] = znajdzHaslo(haslo);
+            if (l[0] && h[0] == true) {
+                System.out.println("Zostales zalogowany");
+                odpowiednieMenu(login);
+            } else {
+                System.out.println("Login lub haslo jest bledne, wpisz ponownie");
+            }
         }
     }
     public static void main(String[] args) {

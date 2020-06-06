@@ -36,6 +36,7 @@ public class Wizyta {
 	public int getID_Wizyta() { return ID_Wizyta; }
 	public boolean getStatus_Wizyty() { return Status_Wizyty; }
 	public Data getData_Wizyty() { return Data_Wizyty; }
+
 	/**
 	 * 
 	 * @param ID_Pacjenta

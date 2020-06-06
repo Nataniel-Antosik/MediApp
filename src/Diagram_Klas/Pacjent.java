@@ -19,6 +19,7 @@ public class Pacjent extends Osoba {
 	}
 	public Pacjent(){}
 
+
 	public static Pacjent copy(Pacjent other){
 		Pacjent nowyPacjent = new Pacjent();
 		nowyPacjent.setImie(String.valueOf(other.Imie));
@@ -29,5 +30,6 @@ public class Pacjent extends Osoba {
 		nowyPacjent.setMail(String.valueOf(other.Mail));
 		return nowyPacjent;
 	}
+
 
 }

@@ -39,4 +39,6 @@ public class Pracownik extends Osoba {
 		}
 		return false;
 	}
+
+
 }

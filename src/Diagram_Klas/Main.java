@@ -10,56 +10,6 @@ public class Main {
     public static HashMap<String, Pacjent> Baza = new HashMap<>();
     public static HashMap<String, Pracownik> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
 
-
-    public static void dodaj_Pracownika() {
-        System.out.println("Wpisz login: ");
-        String login = scan.next();
-        System.out.println("Wpisz haslo: ");
-        String haslo = scan.next();
-        System.out.println("Podaj imie:  ");
-        String imie = scan.next();
-        System.out.println("Podaj nazwisko:  ");
-        String nazwisko = scan.next();
-        System.out.println("Wpisz PESEL: ");
-        String pesel = scan.next();
-        System.out.print("\n");
-        if (pesel.length() != 11) //sprawdzamy długość peselu
-        {
-            throw new NumberFormatException("Wrong PESEL length");
-        }
-        try { //sprawdza czy pesel ma poprawny formay czyli mesiące lata miesiące dni
-            int wart = Integer.parseInt(pesel.substring(2, 4));
-            wart %= 20;
-            if (wart > 12) throw new NumberFormatException("Zly pesel");
-        } catch (NumberFormatException nfe) {
-            throw new NumberFormatException("Zly pesel");
-        }
-        System.out.println("Wpisz numer telefonu: ");
-        String n_telefonu = scan.next();
-        System.out.println("Wpisz date urodzenia: ");
-        String data_urodzenia = scan.next();
-        System.out.println("Wpisz stanowisko: ");
-        String stanowisko = scan.next();
-        System.out.println("Wpisz maila: ");
-        String mail = scan.next();
-        Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail);
-        pracownik.dodajPracownika(Baza_Pracownikow, pracownik);
-        /*
-        System.out.println("1) Zatwierdz");
-        System.out.println("2) Anuluj");
-        int wybor = scan.nextInt();
-
-        switch (wybor) {
-            case 1:
-                Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail);
-                pracownik.dodajPracownika(Baza_Pracownikow, pracownik);
-                break;
-            case 2:
-                System.out.println("Anulowano");
-                break;
-        }*/
-    }
-
     public static void wypiszOsoba(Osoba o) {
         System.out.println("Imie: " + o.getImie());
         System.out.println("Nazwisko: " + o.getNazwisko());
@@ -82,7 +32,6 @@ public class Main {
         Baza_Pracownikow.forEach((k, v) ->
                 {
                     if (v.getLogin().equals(login)) {
-                        wypiszOsoba(v);
                         tmp.set(v);
                     }
                 }
@@ -140,53 +89,33 @@ public class Main {
         while (true) {
             System.out.println(" MENU ");
             System.out.println("(1) Dodaj pracownika");
-            System.out.println("(2) Profil pracownika");
-            System.out.println("(3) Wyloguj");
+            System.out.println("(2) Usun pracownika");
+            System.out.println("(3) Profil pracownika");
+            System.out.println("(4) Wyloguj");
 
             int wybor = scan.nextInt();
             switch (wybor) {
                 case 1: {
-                    dodaj_Pracownika();
+                    Rejestracja_pracownikow.dodaj_Pracownika();
                     break;
                 }
                 case 2: {
-                    Pracownik tmp = new Pracownik();
-                    System.out.println("Wpisz login");
+                    Baza_Pracownikow.forEach((k, v) ->
+                            wypiszOsoba(v)
+                    );
+                    System.out.println("Wpisz login: ");
                     String login = scan.next();
-                    tmp = znajdzPracownika(login);
-                    System.out.println("Edycja pracownika");
-                    boolean s=true;
-                    while(s) {
-                        System.out.println("1) Zmiana nazwiska");
-                        System.out.println("2) Zmiana nr_telefonu");
-                        System.out.println("3) Zmiana stanowiska");
-                        System.out.println("4) Zmiana maila");
-                        System.out.println("5) Wyjdz");
-                        int wybor2 = scan.nextInt();
-                        switch (wybor2) {
-                            case 1:
-                                String nazwisko = scan.next();
-                                tmp.setNazwisko(nazwisko);
-                                break;
-                            case 2:
-                                String nr_telefonu = scan.next();
-                                tmp.setNumer_Telefonu(nr_telefonu);
-                                break;
-                            case 3:
-                                String stanowisko = scan.next();
-                                tmp.setStanowisko(stanowisko);
-                                break;
-                            case 4:
-                                String mail = scan.next();
-                                tmp.setMail(mail);
-                                break;
-                            case 5:
-                                s=false;
-                            }
-                        }
+                    Rejestracja_pracownikow.usun_Pracownika(login);
+                    Baza_Pracownikow.forEach((k, v) ->
+                            wypiszOsoba(v)
+                    );
+                    break;
+                }
+                case 3: {
+                        Rejestracja_pracownikow.modyfikuje_Dane_Pracownika();
                     break;
                     }
-                case 3:
+                case 4:
                     System.out.println("Zostales wylogowany");
                     weryfikacja();
             }
@@ -353,7 +282,8 @@ public class Main {
         //test funkcji weryfikacji
         weryfikacja();
 */
-        menuRecepcjonista();
+        weryfikacja();
+        //menuRecepcjonista();
     }
 }
 

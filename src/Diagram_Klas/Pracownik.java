@@ -38,5 +38,11 @@ public class Pracownik extends Osoba {
 	public int getID_Pracownik() { return ID_Pracownik; }
 	public String getStanowisko() { return Stanowisko; }
 
-
+	public static boolean dodajPracownika(HashMap<String, Pracownik> Baza_Pracownikow, Pracownik p) {
+		if (Baza_Pracownikow.get(p.getLogin()) == null) {
+			Baza_Pracownikow.put(p.getLogin(), p);
+			return true;
+		}
+		return false;
+	}
 }

@@ -2,11 +2,12 @@ package Diagram_Klas;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Main {
     private static Scanner scan = new Scanner(System.in);
     public static HashMap<String, Osoba> Baza = new HashMap<>();
-    public static HashMap<String, Osoba> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
+    public static HashMap<String, Pracownik> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
 
     public void dodaj_Pacjenta() {
         System.out.println("Wpisz login: ");
@@ -77,7 +78,7 @@ public class Main {
         System.out.println("Wpisz stanowisko: ");
         String stanowisko = scan.next();
         Pracownik pracownik = new Pracownik(login, haslo, ID, imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p, stanowisko);
-        pracownik.dodajOsoba(Baza, pracownik);
+        pracownik.dodajPracownika(Baza_Pracownikow, pracownik);
     }
 
     public static void wypiszOsoba(Osoba o) {
@@ -222,7 +223,7 @@ public class Main {
     public static boolean znajdzLogin(String login) {
         //Notka: login dyrektora zaczyna się od litery "D" lekarza od "L" pacjenta od "P"
         boolean[] flag = {false};
-        Baza.forEach((k, v) ->
+        Baza_Pracownikow.forEach((k, v) ->
                 {
                     Pracownik p = (Pracownik) v;
                     if (p.getLogin().equals(login)) {
@@ -234,40 +235,49 @@ public class Main {
     }
     public static boolean znajdzHaslo(String haslo) {
         boolean[] flag = {false};
-        Baza.forEach((k, v) ->
+        Baza_Pracownikow.forEach((k, v) ->
                 {
-                    Pracownik p = (Pracownik) v;
-                    if (p.getHaslo().equals(haslo)) {
+                    if (v.getHaslo().equals(haslo)) {
                         flag[0] = true;
                     }
                 }
         );
         return flag[0];
     }
-
-    public static void odpowiednieMenu(String login, String stanowisko) {
-        Baza.forEach((k, v) ->
+    public static String stanowiskoLogin(String login){
+        AtomicReference<String> wynik = null;
+        Baza_Pracownikow.forEach((k, v) ->
                 {
-                    Pracownik p = (Pracownik) v;
-                    if (p.getLogin().equals(login)) {
-                        if (stanowisko == "Dyrektor"){
-                            menuDyrektor();
-                        }
-                        else if (stanowisko == "Lekarz"){
-                            menuLekarz();
-                        }
-                        else if (stanowisko == "Recepcjonista"){
-                            menuRecepcjonista();
-                        }
+                    if (v.getLogin().equals(login)) {
+                        wynik.set(v.getStanowisko());
                     }
                 }
         );
+        return wynik.get();
+    }
+
+    public static void odpowiednieMenu(String login) {
+        AtomicReference<String> stanowisko = new AtomicReference<>("");
+        Baza_Pracownikow.forEach((k, v) ->
+                {
+                    stanowisko.set(stanowiskoLogin(login));
+                    if (stanowisko.equals("Dyrektor")){
+                        menuDyrektor();
+                    }
+                    else if (stanowisko.equals("Lekarz")){
+                        menuLekarz();
+                    }
+                    else if (stanowisko.equals("Recepcjonista")){
+                        menuRecepcjonista();
+                    }
+                }
+        );
+
     }
 
     public static void weryfikacja(){
         final boolean[] l = {false};
         final boolean[] h = {false};
-        int blad = 0;
         System.out.println("Podaj login: ");
         String login = scan.next();
         System.out.println("Podaj haslo: ");
@@ -276,15 +286,10 @@ public class Main {
         h[0] = znajdzHaslo(haslo);
         if (l[0] && h[0] == true){
             System.out.println("Zostales zalogowany");
-            //odpowiednieMenu(login,);
+            odpowiednieMenu(login);
         }
         else{
             System.out.println("Login lub haslo jest bledne, wpisz ponownie");
-            blad += 1;
-        }
-        if (blad == 2){
-            System.out.println("Zablokowany dostep za duzo prob!");
-            System.exit(0);
         }
     }
     public static void main(String[] args) {
@@ -292,23 +297,25 @@ public class Main {
         Pracownik test = new Pracownik();
         Pacjent test2 = new Pacjent();
         Pracownik d = new Pracownik("D168", "123456",68, "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", 1, "Dyrektor" );
-        test.dodajOsoba(Baza, d);
+        test.dodajPracownika(Baza_Pracownikow, d);
         d = new Pracownik("L168", "654321",69, "Michal", "Kowalski", "97011306112", "111-421-000", "13.01.97", 2, "Dermatolog");
-        test.dodajOsoba(Baza, d);
+        test.dodajPracownika(Baza_Pracownikow, d);
         Pacjent p = new Pacjent(62,"Marian","Kowalski","95041201020","931-321-324","12.04.95",13);
         test2.dodajOsoba(Baza,p);
 
-        //test wypisu wszystkich osób
+        //test wypisu wszystkich osób (Pracownikow
+        Baza_Pracownikow.forEach((k, v) ->
+                wypiszOsoba(v)
+        );
+        //wypisanie pacjentów
         Baza.forEach((k, v) ->
                 wypiszOsoba(v)
         );
-
         //test szukania do hasła aktualnie działa pesel
         //znajdzLogin("D168");
         //znajdzLogin("L168");
         //znajdzLogin("P678678");
         //test funkcji weryfikacji
-
         weryfikacja();
 
     }

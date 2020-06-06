@@ -10,8 +10,6 @@ public class Main {
     public static HashMap<String, Pracownik> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
 
 
-
-
     public static void dodaj_Pracownika() {
         System.out.println("Wpisz login: ");
         String login = scan.next();
@@ -118,11 +116,9 @@ public class Main {
 
                     break;
                 case 6: {
-                    System.out.println("Koniec pracy systemu");
+
                     return;
                 }
-                default :
-                    System.out.println("Bledna opcja");
             }
         }
     }

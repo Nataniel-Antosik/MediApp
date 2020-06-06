@@ -18,12 +18,6 @@ public class Pacjent extends Osoba {
 		// TODO - implement Pacjent.Pacjent
 	}
 	public Pacjent(){}
-	/**
-	 * 
-	 * @param ID_Recepty_Elektronicznej
-	 */
-	public void Sprawdz_Elektroniczna_Recepte(Diagram_Klas.Recepta_Elektorniczna ID_Recepty_Elektronicznej) {
-		// TODO - implement Pacjent.Sprawdz_Elektroniczna_Recepte
-	}
+
 
 }

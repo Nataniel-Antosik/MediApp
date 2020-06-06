@@ -37,13 +37,15 @@ public class Rejestracja_pracownikow {
 		String stanowisko = scan.next();
 		System.out.println("Wpisz maila: ");
 		String mail = scan.next();
+		System.out.println("Wpisz adres zamieszkania: ");
+		String adresZamieszkania = scan.next();
 		System.out.println("1) Zatwierdz");
 		System.out.println("2) Anuluj");
 		int wybor = scan.nextInt();
 
 		switch (wybor) {
 			case 1:
-				Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail);
+				Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail, adresZamieszkania);
 				pracownik.dodajPracownika(Main.Baza_Pracownikow, pracownik);
 				break;
 			case 2:

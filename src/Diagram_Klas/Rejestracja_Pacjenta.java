@@ -4,32 +4,25 @@ package Diagram_Klas;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static Diagram_Klas.Osoba.dodajOsoba;
+
 public class Rejestracja_Pacjenta {
 
-	/**
-	 * 
-	 * @param pacjent
-	 * @param ID_Pracownik
-	 */
-	public Rejestracja_Pacjenta(Diagram_Klas.Pacjent pacjent, Diagram_Klas.Pracownik ID_Pracownik) {
+	public Rejestracja_Pacjenta() {
 
 	}
 
-	/**
-	 * 
-	 * @param pacjent
-	 * @param ID_Pracownik
-	 */
-	public void Usuwanie_Pacjenta(Diagram_Klas.Pacjent pacjent, Diagram_Klas.Pracownik ID_Pracownik) {
+	public static void usun_Pacjenta(HashMap<String, Pacjent> Baza,String pesel) {
+		Baza.remove(pesel);
 	}
 
-	public static void dodaj_Pacjenta(HashMap<String, Osoba> Baza) {
+	public static void dodaj_Pacjenta(HashMap<String, Pacjent> Baza) {
 		Scanner stringinput = new Scanner(System.in);
 		Pacjent nowy = new Pacjent();
 		System.out.println("Podaj imie pacjenta:");
 		while(true){
 			String name = stringinput.nextLine();
-			if(name.isEmpty()){
+			if(name.isBlank()){
 				continue;
 			}
 			nowy.setImie(name);
@@ -38,7 +31,7 @@ public class Rejestracja_Pacjenta {
 		System.out.println("Podaj nazwisko pacjenta:");
 		while(true){
 			String surname = stringinput.nextLine();
-			if(surname.isEmpty()){
+			if(surname.isBlank()){
 				continue;
 			}
 			nowy.setNazwisko(surname);
@@ -47,7 +40,7 @@ public class Rejestracja_Pacjenta {
 		System.out.println("Podaj PESEL pacjenta:");
 		while(true){
 			String id = stringinput.nextLine();
-			if(id.isEmpty()){
+			if(id.isBlank()){
 				continue;
 			}
 			try {
@@ -61,7 +54,7 @@ public class Rejestracja_Pacjenta {
 		System.out.println("Podaj date urodzenia pacjenta:");
 		while(true){
 			String birth = stringinput.nextLine();
-			if(birth.isEmpty()){
+			if(birth.isBlank()){
 				continue;
 			}
 			nowy.setImie(birth);
@@ -70,7 +63,7 @@ public class Rejestracja_Pacjenta {
 		System.out.println("Podaj adres zamieszkania pacjenta:");
 		while(true){
 			String adress = stringinput.nextLine();
-			if(adress.isEmpty()){
+			if(adress.isBlank()){
 				continue;
 			}
 			nowy.setImie(adress);
@@ -79,7 +72,7 @@ public class Rejestracja_Pacjenta {
 		System.out.println("Podaj kod pocztowy pacjenta:");
 		while(true){
 			String postCode = stringinput.nextLine();
-			if(postCode.isEmpty()){
+			if(postCode.isBlank()){
 				continue;
 			}
 			nowy.setImie(postCode);
@@ -88,7 +81,7 @@ public class Rejestracja_Pacjenta {
 		System.out.println("Podaj numer telefonu pacjenta:");
 		while(true){
 			String phoneNumber = stringinput.nextLine();
-			if(phoneNumber.isEmpty()){
+			if(phoneNumber.isBlank()){
 				continue;
 			}
 			nowy.setImie(phoneNumber);
@@ -97,7 +90,7 @@ public class Rejestracja_Pacjenta {
 		System.out.println("Podaj adres e-mail pacjenta:");
 		while(true){
 			String email = stringinput.nextLine();
-			if(email.isEmpty()){
+			if(email.isBlank()){
 				continue;
 			}
 			nowy.setImie(email);
@@ -109,7 +102,7 @@ public class Rejestracja_Pacjenta {
 			String choice;
 			choice =stringinput.nextLine();
 			if(choice.equals("1")){
-				nowy.dodajOsoba(Baza,nowy);
+				dodajOsoba(Baza,nowy);
 				break;
 			}else if(choice.equals("0")){
 				break;

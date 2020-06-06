@@ -1,12 +1,13 @@
 package Diagram_Klas;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Main {
     private static Scanner scan = new Scanner(System.in);
-    public static HashMap<String, Osoba> Baza = new HashMap<>();
+    public static HashMap<String, Pacjent> Baza = new HashMap<>();
     public static HashMap<String, Pracownik> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
 
 
@@ -84,6 +85,18 @@ public class Main {
                 {
                     if (v.getLogin().equals(login)) {
                         wypiszOsoba(v);
+                        tmp.set(v);
+                    }
+                }
+        );
+        return tmp.get();
+    }
+
+    public static Pacjent znajdzPacjent(String pesel){
+        AtomicReference<Pacjent> tmp = new AtomicReference<>(new Pacjent());
+        Baza.forEach((k, v) ->
+                {
+                    if (v.getPesel().equals(pesel)) {
                         tmp.set(v);
                     }
                 }
@@ -211,7 +224,6 @@ public class Main {
 
             switch (wybor) {
                 case 1:
-
                     Rejestracja_Pacjenta.dodaj_Pacjenta(Baza);
                     break;
                 case 2:
@@ -224,16 +236,55 @@ public class Main {
 
                     break;
                 case 5:
-                    System.out.println("Podaj PESEL wyszukiwanego pacjenta:");
+                    System.out.println("Podaj PESEL pacjenta, którego chcesz wyszukać:");
+                    Scanner stringinput = new Scanner(System.in);
+                    String pesel;
+                    while(true){
+                        pesel = stringinput.nextLine();
+                        if(pesel.isBlank()){
+                            continue;
+                        }
+                        try {
+                            walidacjaPesel(pesel);
+                        }catch(Exception e){
+                            System.out.println(e.getMessage());
+                            continue;
+                        }
+                        break;
+
+                    }
+                    Pacjent temp = znajdzPacjent(pesel);
+                    if(temp == null){
+                        System.out.println("Dany pacjent nie znajduje sie w bazie danych");
+                    }
+                    else{
+                        while(true) {
+                            wypiszOsoba(temp);
+                        }
+                    }
                     break;
                 case 6: {
+                    weryfikacja();
 
-                    return;
                 }
             }
         }
     }
-
+    public static void walidacjaPesel(String pesel){
+        if(pesel.length() != 11){
+            throw new NumberFormatException("Zly format peselu");
+        }
+        try{
+            int msc = Integer.parseInt(pesel.substring(2,4));
+            msc %= 20;
+            if(msc > 12) throw new NumberFormatException("Zly format peselu");
+            int day = Integer.parseInt(pesel.substring(4,6));
+            if (day > 31) throw new NumberFormatException("Zly format peselu");
+        }
+        catch (NumberFormatException nfe){
+            throw new NumberFormatException("Zly format peselu");
+        }
+    }
     public static boolean znajdzLogin(String login) {
         //Notka: login dyrektora zaczyna się od litery "D" lekarza od "L" pacjenta od "P"
         boolean[] flag = {false};
@@ -307,6 +358,7 @@ public class Main {
         test2.dodajOsoba(Baza,p);
 
         //test wypisu wszystkich osób (Pracownikow
+        /*
         Baza_Pracownikow.forEach((k, v) ->
                 wypiszOsoba(v)
         );
@@ -317,7 +369,8 @@ public class Main {
 
         //test funkcji weryfikacji
         weryfikacja();
-
+*/
+        menuRecepcjonista();
     }
 }
 

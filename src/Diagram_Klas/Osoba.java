@@ -64,7 +64,7 @@ public class Osoba {
 	public String getData_Urodzenia() { return Data_Urodzenia; }
 	public String getMail() { return Mail; }
 
-	public static boolean dodajOsoba(HashMap<String, Osoba> Baza, Osoba o) {
+	public static boolean dodajOsoba(HashMap<String, Pacjent> Baza, Pacjent o) {
 		if (Baza.get(o.getPesel()) == null) {
 			Baza.put(o.getPesel(), o);
 			return true;

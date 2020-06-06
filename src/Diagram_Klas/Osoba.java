@@ -54,7 +54,7 @@ public class Osoba {
 	public void setNumer_Telefonu(String in) { Numer_Telefonu = in; }
 	public void setData_Urodzenia(String in) { Data_Urodzenia = in; }
 	public void setMail(String in) { Mail = in; }
-	
+
 	public String getImie() { return Imie; }
 	public String getNazwisko() { return Nazwisko; }
 	public String getPesel() { return Pesel; }

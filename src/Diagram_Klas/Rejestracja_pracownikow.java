@@ -37,13 +37,15 @@ public class Rejestracja_pracownikow {
 		String stanowisko = scan.next();
 		System.out.println("Wpisz maila: ");
 		String mail = scan.next();
+		System.out.println("Wpisz adres zamieszkania: ");
+		String adresZamieszkania = scan.next();
 		System.out.println("1) Zatwierdz");
 		System.out.println("2) Anuluj");
 		int wybor = scan.nextInt();
 
 		switch (wybor) {
 			case 1:
-				Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail);
+				Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail, adresZamieszkania);
 				pracownik.dodajPracownika(Main.Baza_Pracownikow, pracownik);
 				break;
 			case 2:
@@ -65,34 +67,59 @@ public class Rejestracja_pracownikow {
 			System.out.println("Nie ma pracownika o takim loginie");
 		} else {
 			Main.wypiszOsoba(tmp);
-			System.out.println("Edycja pracownika");
-			boolean s = true;
-			while (s) {
-				System.out.println("1) Zmiana nazwiska");
-				System.out.println("2) Zmiana nr_telefonu");
-				System.out.println("3) Zmiana stanowiska");
-				System.out.println("4) Zmiana maila");
-				System.out.println("5) Wyjdz");
-				int wybor2 = scan.nextInt();
-				switch (wybor2) {
-					case 1:
-						String nazwisko = scan.next();
-						tmp.setNazwisko(nazwisko);
-						break;
-					case 2:
-						String nr_telefonu = scan.next();
-						tmp.setNumer_Telefonu(nr_telefonu);
-						break;
-					case 3:
-						String stanowisko = scan.next();
-						tmp.setStanowisko(stanowisko);
-						break;
-					case 4:
-						String mail = scan.next();
-						tmp.setMail(mail);
-						break;
-					case 5:
-						s = false;
+			System.out.println("1) Edycja pracownika");
+			System.out.println("2) Usuwanie pracownika");
+			int wybor1 = scan.nextInt();
+			switch (wybor1) {
+				case 1 : {
+					boolean s = true;
+					while (s) {
+						System.out.println("(1)Modyfikuj imie");
+						System.out.println("(2)Modyfikuj nazwisko");
+						System.out.println("(3)Modyfikuj PESEL");
+						System.out.println("(4)Modyfikuj numer telefonu");
+						System.out.println("(5)Modyfikuj date urodzenia");
+						System.out.println("(6)Modyfikuj email");
+						System.out.println("(7)Modyfikuj stanowisko");
+						System.out.println("(8)Powrót");
+						int wybor2 = scan.nextInt();
+						switch (wybor2) {
+							case 1:
+								String imie = scan.next();
+								tmp.setImie(imie);
+								break;
+							case 2:
+								String nazwisko = scan.next();
+								tmp.setNazwisko(nazwisko);
+								break;
+							case 3:
+								String pesel = scan.next();
+								Main.walidacjaPesel(pesel);
+								tmp.setPesel(pesel);
+							case 4:
+								String nr_telefonu = scan.next();
+								tmp.setNumer_Telefonu(nr_telefonu);
+								break;
+							case 5:
+								String data_Urodzenia = scan.next();
+								tmp.setData_Urodzenia(data_Urodzenia);
+							case 6:
+								String mail = scan.next();
+								tmp.setMail(mail);
+								break;
+							case 7:
+								String stanowisko = scan.next();
+								tmp.setStanowisko(stanowisko);
+								break;
+							case 8:
+								s = false;
+						}
+					}
+					break;
+				}
+				case 2: {
+					usun_Pracownika(Main.Baza_Pracownikow, login);
+					break;
 				}
 			}
 		}

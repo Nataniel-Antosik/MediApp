@@ -31,12 +31,11 @@ public class Main {
     }
     public static Pracownik znajdzPracownika(String login){
         AtomicReference<Pracownik> tmp = new AtomicReference<>(new Pracownik());
+        tmp.set(null);
         Baza_Pracownikow.forEach((k, v) ->
                 {
                     if (v.getLogin().equals(login)) {
                         tmp.set(v);
-                    } else {
-                        tmp.set(null);
                     }
                 }
         );
@@ -95,9 +94,8 @@ public class Main {
         while (true) {
             System.out.println(" MENU ");
             System.out.println("(1) Dodaj pracownika");
-            System.out.println("(2) Usun pracownika");
-            System.out.println("(3) Profil pracownika");
-            System.out.println("(4) Wyloguj");
+            System.out.println("(2) Profil pracownika");
+            System.out.println("(3) Wyloguj");
 
             int wybor = scan.nextInt();
             switch (wybor) {
@@ -106,16 +104,10 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    System.out.println("Wpisz login: ");
-                    String login = scan.next();
-                    Rejestracja_pracownikow.usun_Pracownika(Baza_Pracownikow, login);
-                    break;
-                }
-                case 3: {
                         Rejestracja_pracownikow.modyfikuje_Dane_Pracownika();
                     break;
                     }
-                case 4:
+                case 3:
                     System.out.println("Zostales wylogowany");
                     weryfikacja();
             }
@@ -367,13 +359,13 @@ public class Main {
         //Dodanie testowych osób do systemu Dyrektora Dermatologa i Pacjenta
         Pracownik test = new Pracownik();
         Pacjent test2 = new Pacjent();
-        Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", "Dyrektor", "stef@gmail.com" );
+        Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", "Dyrektor", "stef@gmail.com" ,"grunwaldzka 4");
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", "Lekarz", "Nowakowski@gmail.com");
+        d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", "Lekarz", "Nowakowski@gmail.com", "slaska 3");
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88",  "Recepcjonista", "Szurek@gmail.com");
+        d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88",  "Recepcjonista", "Szurek@gmail.com", "piernikowa 24");
         test.dodajPracownika(Baza_Pracownikow, d);
-        Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95", "Marian@gmail.com");
+        Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95", "Marian@gmail.com", "hamminga 124");
         dodajOsoba(Baza,p);
 
         //test wypisu wszystkich osób (Pracownikow
@@ -389,7 +381,8 @@ public class Main {
         //test funkcji weryfikacji
         weryfikacja();
 */
-        weryfikacja();
+        //weryfikacja();
+        Recepta_Elektorniczna.dodaj_Recepte();
         //menuRecepcjonista();
     }
 }

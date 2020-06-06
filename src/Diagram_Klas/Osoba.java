@@ -10,7 +10,7 @@ public class Osoba {
 	public String Numer_Telefonu;
 	public String Data_Urodzenia;
 	public String Mail;
-
+	public String adresZamieszkania;
 	/**
 	 *
 	 * @param Imie
@@ -21,15 +21,15 @@ public class Osoba {
 	 * @param Mail
 	 */
 
-	public Osoba(String Imie, String Nazwisko, String Pesel, String Numer_Telefonu, String Data_Urodzenia, String Mail) {
+	public Osoba(String Imie, String Nazwisko, String Pesel, String Numer_Telefonu, String Data_Urodzenia, String Mail, String adresZamieszkania) {
 		// TODO - implement Osoba.Osoba
-
 		this.Imie = Imie;
 		this.Nazwisko = Nazwisko;
 		this.Pesel = Pesel;
 		this.Numer_Telefonu = Numer_Telefonu;
 		this.Data_Urodzenia = Data_Urodzenia;
 		this.Mail = Mail;
+		this.adresZamieszkania = adresZamieszkania;
 	}
 	
 	public Osoba(){}
@@ -55,7 +55,7 @@ public class Osoba {
 	public void setNumer_Telefonu(String in) { Numer_Telefonu = in; }
 	public void setData_Urodzenia(String in) { Data_Urodzenia = in; }
 	public void setMail(String in) { Mail = in; }
-
+	public void setadresZamieszkania(String in){ adresZamieszkania = in; }
 
 	public String getImie() { return Imie; }
 	public String getNazwisko() { return Nazwisko; }
@@ -63,6 +63,7 @@ public class Osoba {
 	public String getNumer_Telefonu() { return Numer_Telefonu; }
 	public String getData_Urodzenia() { return Data_Urodzenia; }
 	public String getMail() { return Mail; }
+	public String getadresZamieszkania() { return adresZamieszkania; }
 
 	public static boolean dodajOsoba(HashMap<String, Pacjent> Baza, Pacjent o) {
 		if (Baza.get(o.getPesel()) == null) {

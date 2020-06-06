@@ -31,12 +31,11 @@ public class Main {
     }
     public static Pracownik znajdzPracownika(String login){
         AtomicReference<Pracownik> tmp = new AtomicReference<>(new Pracownik());
+        tmp.set(null);
         Baza_Pracownikow.forEach((k, v) ->
                 {
                     if (v.getLogin().equals(login)) {
                         tmp.set(v);
-                    } else {
-                        tmp.set(null);
                     }
                 }
         );
@@ -95,9 +94,8 @@ public class Main {
         while (true) {
             System.out.println(" MENU ");
             System.out.println("(1) Dodaj pracownika");
-            System.out.println("(2) Usun pracownika");
-            System.out.println("(3) Profil pracownika");
-            System.out.println("(4) Wyloguj");
+            System.out.println("(2) Profil pracownika");
+            System.out.println("(3) Wyloguj");
 
             int wybor = scan.nextInt();
             switch (wybor) {
@@ -106,16 +104,10 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    System.out.println("Wpisz login: ");
-                    String login = scan.next();
-                    Rejestracja_pracownikow.usun_Pracownika(Baza_Pracownikow, login);
-                    break;
-                }
-                case 3: {
                         Rejestracja_pracownikow.modyfikuje_Dane_Pracownika();
                     break;
                     }
-                case 4:
+                case 3:
                     System.out.println("Zostales wylogowany");
                     weryfikacja();
             }
@@ -393,7 +385,8 @@ public class Main {
         //test funkcji weryfikacji
         weryfikacja();
 */
-        weryfikacja();
+        //weryfikacja();
+        Recepta_Elektorniczna.dodaj_Recepte();
         //menuRecepcjonista();
     }
 }

@@ -225,8 +225,7 @@ public class Main {
         boolean[] flag = {false};
         Baza_Pracownikow.forEach((k, v) ->
                 {
-                    Pracownik p = (Pracownik) v;
-                    if (p.getLogin().equals(login)) {
+                    if (v.getLogin().equals(login)) {
                         flag[0] = true;
                     }
                 }
@@ -244,35 +243,23 @@ public class Main {
         );
         return flag[0];
     }
-    public static String stanowiskoLogin(String login){
-        AtomicReference<String> wynik = null;
+
+    public static void odpowiednieMenu(String login) {
         Baza_Pracownikow.forEach((k, v) ->
                 {
                     if (v.getLogin().equals(login)) {
-                        wynik.set(v.getStanowisko());
+                        if (v.getStanowisko().equals("Dyrektor")) {
+                            menuDyrektor();
+                        }
+                        else if (v.getStanowisko().equals("Lekarz")) {
+                            menuLekarz();
+                        }
+                        else if (v.getStanowisko().equals("Recepcjonista")){
+                            menuRecepcjonista();
+                        }
                     }
                 }
         );
-        return wynik.get();
-    }
-
-    public static void odpowiednieMenu(String login) {
-        AtomicReference<String> stanowisko = new AtomicReference<>("");
-        Baza_Pracownikow.forEach((k, v) ->
-                {
-                    stanowisko.set(stanowiskoLogin(login));
-                    if (stanowisko.equals("Dyrektor")){
-                        menuDyrektor();
-                    }
-                    else if (stanowisko.equals("Lekarz")){
-                        menuLekarz();
-                    }
-                    else if (stanowisko.equals("Recepcjonista")){
-                        menuRecepcjonista();
-                    }
-                }
-        );
-
     }
 
     public static void weryfikacja(){

@@ -103,13 +103,12 @@ public class Main {
     public static void menuLekarz() {
         while (true) {
             System.out.println(" MENU ");
-            System.out.println("(1) Dodaj osobe");
-            System.out.println("(2) Przyklad2");
-            System.out.println("(3) Przyklad3");
-            System.out.println("(4) Przyklad4");
-            System.out.println("(5) Przyklad5");
-            System.out.println("(6) Koniec");
-            System.out.println("Test");
+            System.out.println("(1) Wypisz recepte");
+            System.out.println("(2) Wypisz skierowanie");
+            System.out.println("(3) Wyswietl historie badan");
+            System.out.println("(4) Wyswietl historie chorob");
+            System.out.println("(5) Wpis w historie chorob");
+            System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
 
             switch (wybor) {

@@ -187,13 +187,12 @@ public class Main {
     public static void menuRecepcjonista() {
         while (true) {
             System.out.println(" MENU ");
-            System.out.println("(1) Przyklad1");
-            System.out.println("(2) Przyklad2");
-            System.out.println("(3) Przyklad3");
-            System.out.println("(4) Przyklad4");
-            System.out.println("(5) Przyklad5");
-            System.out.println("(6) Koniec");
-            System.out.println("Test");
+            System.out.println("(1) Rejestracja pacjenta");
+            System.out.println("(2) Umow wizyte");
+            System.out.println("(3) Umowienie wizyty");
+            System.out.println("(4) Profil pracownika");
+            System.out.println("(5) Profil pacjenta");
+            System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
 
             switch (wybor) {

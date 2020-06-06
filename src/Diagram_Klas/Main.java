@@ -187,10 +187,87 @@ public class Main {
             System.out.println("(5) Profil pacjenta");
             System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
-
+            Scanner  stringinput = new Scanner(System.in);
             switch (wybor) {
                 case 1:
-
+                    Pacjent nowy = new Pacjent();
+                    System.out.println("Podaj imie pacjenta:");
+                    while(true){
+                        String name = stringinput.nextLine();
+                        if(name.isEmpty()){
+                            continue;
+                        }
+                        nowy.setImie(name);
+                        break;
+                    }
+                    System.out.println("Podaj nazwisko pacjenta:");
+                    while(true){
+                        String surname = stringinput.nextLine();
+                        if(surname.isEmpty()){
+                            continue;
+                        }
+                        nowy.setNazwisko(surname);
+                        break;
+                    }
+                    System.out.println("Podaj PESEL pacjenta:");
+                    while(true){
+                        String id = stringinput.nextLine();
+                        if(id.isEmpty()){
+                            continue;
+                        }
+                        try {
+                            nowy.setPesel(id);
+                        }catch(Exception e){
+                            System.out.println(e.getMessage());
+                            continue;
+                        }
+                        break;
+                    }
+                    System.out.println("Podaj date urodzenia pacjenta:");
+                    while(true){
+                        String birth = stringinput.nextLine();
+                        if(birth.isEmpty()){
+                            continue;
+                        }
+                        nowy.setImie(birth);
+                        break;
+                    }
+                    System.out.println("Podaj adres zamieszkania pacjenta:");
+                    while(true){
+                        String adress = stringinput.nextLine();
+                        if(adress.isEmpty()){
+                            continue;
+                        }
+                        nowy.setImie(adress);
+                        break;
+                    }
+                    System.out.println("Podaj kod pocztowy pacjenta:");
+                    while(true){
+                        String postCode = stringinput.nextLine();
+                        if(postCode.isEmpty()){
+                            continue;
+                        }
+                        nowy.setImie(postCode);
+                        break;
+                    }
+                    System.out.println("Podaj numer telefonu pacjenta:");
+                    while(true){
+                        String phoneNumber = stringinput.nextLine();
+                        if(phoneNumber.isEmpty()){
+                            continue;
+                        }
+                        nowy.setImie(phoneNumber);
+                        break;
+                    }
+                    System.out.println("Podaj adres e-mail pacjenta:");
+                    while(true){
+                        String email = stringinput.nextLine();
+                        if(email.isEmpty()){
+                            continue;
+                        }
+                        nowy.setImie(email);
+                        break;
+                    }
                     break;
                 case 2:
 
@@ -275,27 +352,27 @@ public class Main {
         //Dodanie testowych osób do systemu Dyrektora Dermatologa i Pacjenta
         Pracownik test = new Pracownik();
         Pacjent test2 = new Pacjent();
-        Pracownik d = new Pracownik("D168", "123456",68, "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", 1, "Dyrektor" );
+        Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", 1, "Dyrektor","stefan.kowalski@wp.pl" );
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("L168", "654321",69, "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", 2, "Lekarz");
+        d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", 2, "Lekarz","michal.nowak@wp.pl");
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("R168", "654321",70, "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88", 3, "Recepcjonista");
+        d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88", 3, "Recepcjonista","karol.szczur@wp.pl");
         test.dodajPracownika(Baza_Pracownikow, d);
-        Pacjent p = new Pacjent(62,"Marian","Kowalski","95041201020","931-321-324","12.04.95",13);
+        Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95",13,"marian.kowalski@wp.pl");
         test2.dodajOsoba(Baza,p);
 
         //test wypisu wszystkich osób (Pracownikow
-        Baza_Pracownikow.forEach((k, v) ->
-                wypiszOsoba(v)
-        );
+        //Baza_Pracownikow.forEach((k, v) ->
+        //        wypiszOsoba(v)
+        //);
         //wypisanie pacjentów
-        Baza.forEach((k, v) ->
-                wypiszOsoba(v)
-        );
+        //Baza.forEach((k, v) ->
+         //       wypiszOsoba(v)
+        //);
 
         //test funkcji weryfikacji
-        weryfikacja();
-
+        //weryfikacja();
+        menuRecepcjonista();
     }
 }
 

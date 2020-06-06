@@ -19,8 +19,8 @@ public class Pracownik extends Osoba {
 	 * @param Stanowisko
 	 */
 	public Pracownik(){}
-	public Pracownik(String Login, String Haslo, int ID, String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, int ID_Pracownik, String Stanowisko) {
-		super(ID, Imie, Nazwisko, Pesel, Numer_Telefonu, Data_Urodzenia);
+	public Pracownik(String Login, String Haslo, String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, int ID_Pracownik, String Stanowisko, String Mail) {
+		super(Imie, Nazwisko, Pesel, Numer_Telefonu, Data_Urodzenia, Mail);
 		// TODO - implement Pracownik.Pracownik
 		this.Login = Login;
 		this.Haslo = Haslo;

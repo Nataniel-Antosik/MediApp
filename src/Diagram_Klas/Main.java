@@ -40,7 +40,9 @@ public class Main {
         String data_urodzenia = scan.next();
         System.out.println("Wpisz ID pacjenta");
         int ID_p = scan.nextInt();
-        Pacjent pacjent = new Pacjent(ID, imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p);
+        System.out.println("Wpisz maila: ");
+        String mail = scan.next();
+        Pacjent pacjent = new Pacjent(imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p, mail);
         pacjent.dodajOsoba(Baza, pacjent);
         //trzeba dodać do bazy
     }
@@ -77,7 +79,9 @@ public class Main {
         int ID_p = scan.nextInt();
         System.out.println("Wpisz stanowisko: ");
         String stanowisko = scan.next();
-        Pracownik pracownik = new Pracownik(login, haslo, ID, imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p, stanowisko);
+        System.out.println("Wpisz maila: ");
+        String mail = scan.next();
+        Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, ID_p, stanowisko, mail);
         pracownik.dodajPracownika(Baza_Pracownikow, pracownik);
     }
 

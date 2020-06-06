@@ -22,7 +22,8 @@ public class Osoba {
 	 */
 
 	public Osoba(String Imie, String Nazwisko, String Pesel, String Numer_Telefonu, String Data_Urodzenia, String Mail) {
-		// TODO - implement Osoba.Osoba 
+		// TODO - implement Osoba.Osoba
+
 		this.Imie = Imie;
 		this.Nazwisko = Nazwisko;
 		this.Pesel = Pesel;
@@ -55,7 +56,7 @@ public class Osoba {
 	public void setNumer_Telefonu(String in) { Numer_Telefonu = in; }
 	public void setData_Urodzenia(String in) { Data_Urodzenia = in; }
 	public void setMail(String in) { Mail = in; }
-	
+
 
 	public String getImie() { return Imie; }
 	public String getNazwisko() { return Nazwisko; }

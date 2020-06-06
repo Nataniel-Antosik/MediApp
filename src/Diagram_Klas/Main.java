@@ -9,7 +9,6 @@ public class Main {
     public static HashMap<String, Osoba> Baza = new HashMap<>();
     public static HashMap<String, Pracownik> Baza_Pracownikow = new HashMap<>(); //rozwiązanie dla pracowników
 
-<<<<<<< HEAD
     public void dodaj_Pacjenta() {
         System.out.println("Wpisz login: ");
         String login = scan.next();
@@ -25,104 +24,14 @@ public class Main {
         if (pesel.length() != 11) //sprawdzamy długość peselu
         {
             throw new NumberFormatException("Wrong PESEL length");
-=======
-    public static void dodaj_Pacjenta() {
-        Scanner  stringinput = new Scanner(System.in);
-        Pacjent nowy = new Pacjent();
-        System.out.println("Podaj imie pacjenta:");
-        while(true){
-            String name = stringinput.nextLine();
-            if(name.isEmpty()){
-                continue;
-            }
-            nowy.setImie(name);
-            break;
->>>>>>> 982ea995f10784ffbdd7cbc8aaa84be2dadd4340
         }
-        System.out.println("Podaj nazwisko pacjenta:");
-        while(true){
-            String surname = stringinput.nextLine();
-            if(surname.isEmpty()){
-                continue;
-            }
-            nowy.setNazwisko(surname);
-            break;
+        try { //sprawdza czy pesel ma poprawny formay czyli mesiące lata miesiące dni
+            int wart = Integer.parseInt(pesel.substring(2, 4));
+            wart %= 20;
+            if (wart > 12) throw new NumberFormatException("Zly pesel");
+        } catch (NumberFormatException nfe) {
+            throw new NumberFormatException("Zly pesel");
         }
-        System.out.println("Podaj PESEL pacjenta:");
-        while(true){
-            String id = stringinput.nextLine();
-            if(id.isEmpty()){
-                continue;
-            }
-            try {
-                nowy.setPesel(id);
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
-        }
-        System.out.println("Podaj date urodzenia pacjenta:");
-        while(true){
-            String birth = stringinput.nextLine();
-            if(birth.isEmpty()){
-                continue;
-            }
-            nowy.setImie(birth);
-            break;
-        }
-        System.out.println("Podaj adres zamieszkania pacjenta:");
-        while(true){
-            String adress = stringinput.nextLine();
-            if(adress.isEmpty()){
-                continue;
-            }
-            nowy.setImie(adress);
-            break;
-        }
-        System.out.println("Podaj kod pocztowy pacjenta:");
-        while(true){
-            String postCode = stringinput.nextLine();
-            if(postCode.isEmpty()){
-                continue;
-            }
-            nowy.setImie(postCode);
-            break;
-        }
-        System.out.println("Podaj numer telefonu pacjenta:");
-        while(true){
-            String phoneNumber = stringinput.nextLine();
-            if(phoneNumber.isEmpty()){
-                continue;
-            }
-            nowy.setImie(phoneNumber);
-            break;
-        }
-        System.out.println("Podaj adres e-mail pacjenta:");
-        while(true){
-            String email = stringinput.nextLine();
-            if(email.isEmpty()){
-                continue;
-            }
-            nowy.setImie(email);
-            break;
-        }
-        System.out.println("Zatwierdz(1)/Anuluj(0)");
-
-        while(true){
-            String choice;
-            choice =scan.nextLine();
-            if(choice.equals("1")){
-                nowy.dodajOsoba(Baza,nowy);
-                break;
-            }else if(choice.equals("0")){
-                break;
-            }
-            else{
-                continue;
-            }
-        }
-<<<<<<< HEAD
         System.out.println("Wpisz numer telefonu: ");
         String n_telefonu = scan.next();
         System.out.println("Wpisz date urodzenia: ");
@@ -143,8 +52,6 @@ public class Main {
         }
 
         //trzeba dodać do bazy
-=======
->>>>>>> 982ea995f10784ffbdd7cbc8aaa84be2dadd4340
     }
     public static void dodaj_Pracownika() {
         System.out.println("Wpisz login: ");
@@ -334,19 +241,18 @@ public class Main {
 
     public static void menuRecepcjonista() {
         while (true) {
-
             System.out.println(" MENU ");
             System.out.println("(1) Rejestracja pacjenta");
             System.out.println("(2) Umow wizyte");
             System.out.println("(3) Umowienie wizyty");
-            System.out.println("(4) Wyświetl profil pracownika");
-            System.out.println("(5) Wyświetl profil pacjenta");
+            System.out.println("(4) Profil pracownika");
+            System.out.println("(5) Profil pacjenta");
             System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
 
             switch (wybor) {
                 case 1:
-                    dodaj_Pacjenta();
+
                     break;
                 case 2:
 
@@ -358,6 +264,7 @@ public class Main {
 
                     break;
                 case 5:
+                    System.out.println("Podaj PESEL wyszukiwanego pacjenta:");
                     break;
                 case 6: {
 
@@ -430,7 +337,6 @@ public class Main {
         //Dodanie testowych osób do systemu Dyrektora Dermatologa i Pacjenta
         Pracownik test = new Pracownik();
         Pacjent test2 = new Pacjent();
-<<<<<<< HEAD
         Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", "Dyrektor", "stef@gmail.com" );
         test.dodajPracownika(Baza_Pracownikow, d);
         d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", "Lekarz", "Nowakowski@gmail.com");
@@ -438,15 +344,6 @@ public class Main {
         d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88",  "Recepcjonista", "Szurek@gmail.com");
         test.dodajPracownika(Baza_Pracownikow, d);
         Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95", "Marian@gmail.com");
-=======
-        Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", 1, "Dyrektor","stefan.kowalski@wp.pl" );
-        test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", 2, "Lekarz","michal.nowak@wp.pl");
-        test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88", 3, "Recepcjonista","karol.szczur@wp.pl");
-        test.dodajPracownika(Baza_Pracownikow, d);
-        Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95",13,"marian.kowalski@wp.pl");
->>>>>>> 982ea995f10784ffbdd7cbc8aaa84be2dadd4340
         test2.dodajOsoba(Baza,p);
 
         //test wypisu wszystkich osób (Pracownikow
@@ -460,7 +357,7 @@ public class Main {
 
         //test funkcji weryfikacji
         weryfikacja();
-        //menuRecepcjonista();
+
     }
 }
 

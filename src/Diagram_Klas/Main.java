@@ -103,13 +103,12 @@ public class Main {
     public static void menuLekarz() {
         while (true) {
             System.out.println(" MENU ");
-            System.out.println("(1) Dodaj osobe");
-            System.out.println("(2) Przyklad2");
-            System.out.println("(3) Przyklad3");
-            System.out.println("(4) Przyklad4");
-            System.out.println("(5) Przyklad5");
-            System.out.println("(6) Koniec");
-            System.out.println("Test");
+            System.out.println("(1) Wypisz recepte");
+            System.out.println("(2) Wypisz skierowanie");
+            System.out.println("(3) Wyswietl historie badan");
+            System.out.println("(4) Wyswietl historie chorob");
+            System.out.println("(5) Wpis w historie chorob");
+            System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
 
             switch (wybor) {
@@ -144,6 +143,8 @@ public class Main {
                     System.out.println("Koniec pracy systemu");
                     return;
                 }
+                default :
+                    System.out.println("Bledna opcja");
             }
         }
     }
@@ -151,35 +152,23 @@ public class Main {
     public static void menuDyrektor() {
         while (true) {
             System.out.println(" MENU ");
-            System.out.println("(1) Przyklad1");
-            System.out.println("(2) Przyklad2");
-            System.out.println("(3) Przyklad3");
-            System.out.println("(4) Przyklad4");
-            System.out.println("(5) Przyklad5");
-            System.out.println("(6) Koniec");
-            System.out.println("Test");
+            System.out.println("(1) Dodaj pracownika");
+            System.out.println("(2) Profil pracownika");
+            System.out.println("(3) Wyloguj");
             int wybor = scan.nextInt();
 
             switch (wybor) {
                 case 1:
-                    System.out.println("Wybrales opcje nr 1");
+                    System.out.println("");
                     break;
                 case 2:
                     System.out.println("Wybrales opcje nr 2");
                     break;
                 case 3:
-                    System.out.println("Wybrales opcje nr 3");
-                    break;
-                case 4:
-                    System.out.println("Wybrales opcje nr 4");
-                    break;
-                case 5:
-                    System.out.println("Wybrales opcje nr 5");
-                    break;
-                case 6: {
-                    System.out.println("Koniec pracy systemu");
+                    System.out.println("Zostales wylogowany");
                     return;
-                }
+                default :
+                    System.out.println("Bledna opcja");
             }
         }
     }
@@ -197,22 +186,22 @@ public class Main {
 
             switch (wybor) {
                 case 1:
-                    System.out.println("Wybrales opcje nr 1");
+
                     break;
                 case 2:
-                    System.out.println("Wybrales opcje nr 2");
+
                     break;
                 case 3:
-                    System.out.println("Wybrales opcje nr 3");
+
                     break;
                 case 4:
-                    System.out.println("Wybrales opcje nr 4");
+
                     break;
                 case 5:
-                    System.out.println("Wybrales opcje nr 5");
+                    System.out.println("Podaj PESEL wyszukiwanego pacjenta:");
                     break;
                 case 6: {
-                    System.out.println("Koniec pracy systemu");
+
                     return;
                 }
             }
@@ -284,7 +273,9 @@ public class Main {
         Pacjent test2 = new Pacjent();
         Pracownik d = new Pracownik("D168", "123456",68, "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", 1, "Dyrektor" );
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("L168", "654321",69, "Michal", "Kowalski", "97011306112", "111-421-000", "13.01.97", 2, "Dermatolog");
+        d = new Pracownik("L168", "654321",69, "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", 2, "Lekarz");
+        test.dodajPracownika(Baza_Pracownikow, d);
+        d = new Pracownik("R168", "654321",70, "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88", 3, "Recepcjonista");
         test.dodajPracownika(Baza_Pracownikow, d);
         Pacjent p = new Pacjent(62,"Marian","Kowalski","95041201020","931-321-324","12.04.95",13);
         test2.dodajOsoba(Baza,p);
@@ -297,10 +288,7 @@ public class Main {
         Baza.forEach((k, v) ->
                 wypiszOsoba(v)
         );
-        //test szukania do hasła aktualnie działa pesel
-        //znajdzLogin("D168");
-        //znajdzLogin("L168");
-        //znajdzLogin("P678678");
+
         //test funkcji weryfikacji
         weryfikacja();
 

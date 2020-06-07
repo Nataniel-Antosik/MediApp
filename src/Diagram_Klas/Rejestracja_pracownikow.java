@@ -39,13 +39,15 @@ public class Rejestracja_pracownikow {
 		String mail = scan.next();
 		System.out.println("Wpisz adres zamieszkania: ");
 		String adresZamieszkania = scan.next();
+		System.out.println("Wpisz kod pocztowy: ");
+		String kodPocztowy = scan.next();
 		System.out.println("1) Zatwierdz");
 		System.out.println("2) Anuluj");
 		int wybor = scan.nextInt();
 
 		switch (wybor) {
 			case 1:
-				Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail, adresZamieszkania);
+				Pracownik pracownik = new Pracownik(login, haslo, imie, nazwisko, pesel, n_telefonu, data_urodzenia, stanowisko, mail, adresZamieszkania, kodPocztowy);
 				pracownik.dodajPracownika(Main.Baza_Pracownikow, pracownik);
 				break;
 			case 2:
@@ -82,7 +84,8 @@ public class Rejestracja_pracownikow {
 						System.out.println("(6)Modyfikuj stanowisko");
 						System.out.println("(7)Modyfikuj haslo");
 						System.out.println("(8)Modyfikuj adres zamieszkania");
-						System.out.println("(9)Powrót");
+						System.out.println("(9)Modyfikuj kod pocztowy");
+						System.out.println("(10)Powrót");
 						int wybor2 = scan.nextInt();
 						switch (wybor2) {
 							case 1:
@@ -112,10 +115,15 @@ public class Rejestracja_pracownikow {
 							case 7:
 								String halso = scan.next();
 								tmp.setHaslo(halso);
+								break;
 							case 8:
 								String adres_Zamieszkania = scan.next();
 								tmp.setadresZamieszkania(adres_Zamieszkania);
+								break;
 							case 9:
+								String kodPocztowy = scan.next();
+								tmp.setKodPocztowy(kodPocztowy);
+							case 10:
 								s = false;
 						}
 					}

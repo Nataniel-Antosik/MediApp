@@ -598,7 +598,7 @@ public class Main {
         dodajOsoba(Baza,p);
 
 
-        menuRecepcjonista();
+        weryfikacja();
     }
 }
 

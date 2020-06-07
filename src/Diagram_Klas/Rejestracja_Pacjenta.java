@@ -57,7 +57,7 @@ public class Rejestracja_Pacjenta {
 			if(birth.isBlank()){
 				continue;
 			}
-			nowy.setImie(birth);
+			nowy.setData_Urodzenia(birth);
 			break;
 		}
 		System.out.println("Podaj adres zamieszkania pacjenta:");
@@ -66,25 +66,17 @@ public class Rejestracja_Pacjenta {
 			if(adress.isBlank()){
 				continue;
 			}
-			nowy.setImie(adress);
+			nowy.setadresZamieszkania(adress);
 			break;
 		}
-		System.out.println("Podaj kod pocztowy pacjenta:");
-		while(true){
-			String postCode = stringinput.nextLine();
-			if(postCode.isBlank()){
-				continue;
-			}
-			nowy.setImie(postCode);
-			break;
-		}
+
 		System.out.println("Podaj numer telefonu pacjenta:");
 		while(true){
 			String phoneNumber = stringinput.nextLine();
 			if(phoneNumber.isBlank()){
 				continue;
 			}
-			nowy.setImie(phoneNumber);
+			nowy.setNumer_Telefonu(phoneNumber);
 			break;
 		}
 		System.out.println("Podaj adres e-mail pacjenta:");
@@ -93,7 +85,7 @@ public class Rejestracja_Pacjenta {
 			if(email.isBlank()){
 				continue;
 			}
-			nowy.setImie(email);
+			nowy.setMail(email);
 			break;
 		}
 		System.out.println("Zatwierdz(1)/Anuluj(0)");

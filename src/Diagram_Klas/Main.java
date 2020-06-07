@@ -83,7 +83,6 @@ public class Main {
 
                     break;
                 case 6: {
-
                     return;
                 }
             }
@@ -123,6 +122,7 @@ public class Main {
             System.out.println("(4) Profil pacjenta");
             System.out.println("(5) Wyloguj");
             int wybor = scan.nextInt();
+            Scanner stringinput = new Scanner(System.in);
 
             switch (wybor) {
                 case 1:
@@ -131,12 +131,142 @@ public class Main {
                 case 2:
 
                     break;
-                case 3:
+                case 3: {
+                    System.out.println("Podaj login pracownika, ktorego chcesz wyszukac:");
+                    String login;
+                    while (true) {
+                        login = stringinput.nextLine();
+                        if (login.isBlank()) {
+                            continue;
+                        }
+                        break;
+                    }
+                    Pracownik pracownik = znajdzPracownika(login);
+                    if (pracownik == null) {
+                        System.out.println("Dany pracownik nie znajduje sie w bazie danych");
+                    }else{
+                        boolean stop3 = true;
+                        while(stop3){
+                            wypiszOsoba(pracownik);
+                            System.out.println("(1)Modyfikuj dane pracownika");
+                            System.out.println("(2)Sprawdź harmonogram pracy pracownika");
+                            System.out.println("(3)Powrot");
+                            int wybor3 = scan.nextInt();
+                            switch(wybor3){
+                                case 1:
+                                    {
+                                        boolean stop4 = true;
+                                        while(stop4) {
+                                            System.out.println("(1)Modyfikuj imie");
+                                            System.out.println("(2)Modyfikuj nazwisko");
+                                            System.out.println("(3)Modyfikuj PESEL");
+                                            System.out.println("(4)Modyfikuj numer telefonu");
+                                            System.out.println("(5)Modyfikuj date urodzenia");
+                                            System.out.println("(6)Modyfikuj email");
+                                            System.out.println("(7)Powrót");
+                                            int wybor4 = scan.nextInt();
+                                            switch (wybor4) {
+                                                case 1:
+                                                    System.out.println("Podaj nowe imie:");
+                                                    while (true) {
+                                                        String name = stringinput.nextLine();
+                                                        if (name.isBlank()) {
+                                                            continue;
+                                                        }
+                                                        pracownik.setImie(name);
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    System.out.println("Podaj nowe nazwisko:");
+                                                    while (true) {
+                                                        String surname = stringinput.nextLine();
+                                                        if (surname.isBlank()) {
+                                                            continue;
+                                                        }
+                                                        pracownik.setNazwisko(surname);
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    System.out.println("Podaj nowy PESEL:");
+                                                    while (true) {
+                                                        String id = stringinput.nextLine();
+                                                        if (id.isBlank()) {
+                                                            continue;
+                                                        }
+                                                        try {
+                                                            pracownik.setPesel(id);
+                                                        } catch (Exception e) {
+                                                            System.out.println(e.getMessage());
+                                                            continue;
+                                                        }
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 4:
+                                                    System.out.println("Podaj nowy numer telefonu:");
+                                                    while (true) {
+                                                        String phoneNumber = stringinput.nextLine();
+                                                        if (phoneNumber.isBlank()) {
+                                                            continue;
+                                                        }
+                                                        pracownik.setNumer_Telefonu(phoneNumber);
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 5:
+                                                    System.out.println("Podaj nowa date urodzenia:");
+                                                    while (true) {
+                                                        String birth = stringinput.nextLine();
+                                                        if (birth.isBlank()) {
+                                                            continue;
+                                                        }
+                                                        pracownik.setData_Urodzenia(birth);
+                                                        break;
+                                                    }
+                                                    break;
+                                                case 6:
+                                                    System.out.println("Podaj nowy mail:");
+                                                    while (true) {
+                                                        String email = stringinput.nextLine();
+                                                        if (email.isBlank()) {
+                                                            continue;
+                                                        }
+                                                        pracownik.setImie(email);
+                                                        break;
+                                                    }
+                                                    break;
+                                                default:
+                                                    stop4 = false;
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    {
 
+                                    }
+                                    break;
+                                case 3:
+                                    {
+                                        stop3 = false;
+                                    }
+                                    break;
+                                default:
+                                    {
+                                        stop3 = false;
+                                    }
+                                    break;
+
+                           }
+                        }
+                    }
+                }
                     break;
                 case 4: {
                     System.out.println("Podaj PESEL pacjenta, którego chcesz wyszukać:");
-                    Scanner stringinput = new Scanner(System.in);
                     String pesel;
                     while (true) {
                         pesel = stringinput.nextLine();
@@ -382,8 +512,8 @@ public class Main {
         weryfikacja();
 */
         //weryfikacja();
-        Recepta_Elektorniczna.dodaj_Recepte();
-        //menuRecepcjonista();
+        //Recepta_Elektorniczna.dodaj_Recepte();
+        menuRecepcjonista();
     }
 }
 

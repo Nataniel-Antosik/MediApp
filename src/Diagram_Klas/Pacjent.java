@@ -18,7 +18,16 @@ public class Pacjent extends Osoba {
 		// TODO - implement Pacjent.Pacjent
 	}
 	public Pacjent(){}
+	public Pacjent(Pacjent pacjent){
+		this.Imie = pacjent.Imie;
+		this.Nazwisko = pacjent.Nazwisko;
+		this.Pesel = pacjent.Pesel;
+		this.Data_Urodzenia = pacjent.Data_Urodzenia;
+		this.Numer_Telefonu = pacjent.Numer_Telefonu;
+		this.Mail = pacjent.Mail;
+		this.adresZamieszkania = pacjent.adresZamieszkania;
 
+	}
 
 	public static Pacjent copy(Pacjent other){
 		Pacjent nowyPacjent = new Pacjent();

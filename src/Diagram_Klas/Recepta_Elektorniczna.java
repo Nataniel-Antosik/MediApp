@@ -16,9 +16,8 @@ public class Recepta_Elektorniczna {
 	public static String[][] Lek = new String[2][10];
 	public int klucz;
 	public String Pesel;
-	public String Opis;
 
-	public Recepta_Elektorniczna(Pacjent p) {
+	public Recepta_Elektorniczna(Pacjent p, String Lek[][], String data_Waznosci) {
 		//Diagram_Klas.Pacjent Pesel, int ID_Recepty_Elektronicznej, String Data_Waznosci, String[] Lek, int Klucz
 		Random generator = new Random();
 		this.klucz = generator.nextInt(1000000);
@@ -37,7 +36,6 @@ public class Recepta_Elektorniczna {
 		System.out.println("Wpisz pesel pacjenta: ");
 		String pesel = scan.next();
 		tmp = Main.znajdzPacjent(pesel);
-		Recepta_Elektorniczna tmp2 = new Recepta_Elektorniczna(tmp);
 		System.out.println("Pesel, ID i klucz pacjenta zostal wpisany");
 		int i=0;
 		while(true) {
@@ -54,9 +52,11 @@ public class Recepta_Elektorniczna {
 		}
 		System.out.println("Wpisz date waznosci: ");
 		String data_Waznosci = scan.next();
+		Recepta_Elektorniczna tmp2 = new Recepta_Elektorniczna(tmp, Lek, data_Waznosci);
+		Drukuj_Recepte(tmp2);
 	}
 
-	public void Drukuj_Recepte(Recepta_Elektorniczna re) {
+	public static void Drukuj_Recepte(Recepta_Elektorniczna re) {
 		//Diagram_Klas.Pacjent Pesel, int ID_Recepty_Elektronicznej, Data Data_Waznosci, String Opis
 		Pacjent pacjent = new Pacjent();
 		pacjent = Main.znajdzPacjent(re.getPesel());

@@ -492,7 +492,6 @@ public class Main {
     public static void main(String[] args) {
         //Dodanie testowych osób do systemu Dyrektora Dermatologa i Pacjenta
         Pracownik test = new Pracownik();
-        Pacjent test2 = new Pacjent();
         Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", "Dyrektor", "stef@gmail.com" ,"grunwaldzka 4");
         test.dodajPracownika(Baza_Pracownikow, d);
         d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", "Lekarz", "Nowakowski@gmail.com", "slaska 3");
@@ -515,9 +514,15 @@ public class Main {
         //test funkcji weryfikacji
         weryfikacja();
 */
+
         //weryfikacja();
         //Recepta_Elektorniczna.dodaj_Recepte();
-        menuRecepcjonista();
+
+        weryfikacja();
+        Recepta_Elektorniczna.dodaj_Recepte();
+
+        //menuRecepcjonista();
+
     }
 }
 

@@ -6,7 +6,6 @@ public class Recepta_Elektorniczna {
 	private static Scanner scan = new Scanner(System.in);
 	Main m = new Main();
 
-	Collection<Pacjent> Pacjent;
 	Pracownik Wydajacy;
 	public int ID_Recepty_Elektronicznej;
 	public String Data_Waznosci;

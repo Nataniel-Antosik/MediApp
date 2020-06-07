@@ -7,15 +7,11 @@ public class Pracownik extends Osoba {
 	Collection<Badania> Badanie;
 	Collection<Recepta_Elektorniczna> Recepta_Elektroniczna;
 	Collection<Skierowanie> Skierowanie;
-	Collection<Wizyta> Wizyta;
+	Map<String,HashMap<String,Wizyta>> Wizyta;
 	public String Stanowisko;
 	public String Login;
 	public String Haslo;
 
-	/**
-	 *
-	 * @param Stanowisko
-	 */
 	public Pracownik(){}
 	public Pracownik(String Login, String Haslo, String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, String Stanowisko, String Mail, String adresZamieszkania) {
 		super(Imie, Nazwisko, Pesel, Numer_Telefonu, Data_Urodzenia, Mail, adresZamieszkania);
@@ -23,6 +19,9 @@ public class Pracownik extends Osoba {
 		this.Login = Login;
 		this.Haslo = Haslo;
 		this.Stanowisko = Stanowisko;
+		Wizyta = new HashMap<String,HashMap<String,Wizyta>>();
+		HashMap<String,Wizyta> temp = new HashMap<>();
+
 	}
 	public void setLogin(String in) { Login = in; }
 	public void setHaslo(String in) { Haslo = in; }

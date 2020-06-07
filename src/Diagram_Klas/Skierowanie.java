@@ -46,7 +46,7 @@ public class Skierowanie {
 	public int getID_Skierowania(){ return ID_Skierowania; }
 	public String getLogin() { return Login; }
 
-	public void dodajSkierowanie(){
+	public static void dodajSkierowanie(){
 		Pacjent tmp = new Pacjent();
 		Pracownik tmp3 = new Pracownik();
 		System.out.println("Wpisz pesel pacjenta: ");
@@ -77,7 +77,7 @@ public class Skierowanie {
 		}
 	}
 
-	public void Drukuj_Skierowanie(Skierowanie sk) {
+	public static void Drukuj_Skierowanie(Skierowanie sk) {
 		// TODO - implement Skierowanie.Drukuj_Skierowanie
 		Pacjent pacjent = new Pacjent();
 		pacjent = Main.znajdzPacjent(sk.getPesel());

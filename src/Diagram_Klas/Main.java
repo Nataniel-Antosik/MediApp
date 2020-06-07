@@ -57,6 +57,7 @@ public class Main {
         );
         return tmp.get();
     }
+
     public static void menuLekarz() {
         while (true) {
             System.out.println(" MENU ");
@@ -69,13 +70,15 @@ public class Main {
             int wybor = scan.nextInt();
 
             switch (wybor) {
-                case 1:
-
+                case 1: {
+                    Recepta_Elektorniczna.dodaj_Recepte();
+                }
                     break;
-                case 2:
-
+                case 2: {
+                    Skierowanie.dodajSkierowanie();
+                }
                     break;
-                case 3:{
+                case 3: {
                     Wyniki.Sprawdz_Wynikow();
                 }
                     break;
@@ -105,7 +108,7 @@ public class Main {
                     }
                 }
                     break;
-                case 5:{
+                case 5: {
                     System.out.println("Podaj PESEL pacjenta, u ktorego chcesz dokonac wpisu choroby");
                     String pesel;
                     while(true){
@@ -132,12 +135,11 @@ public class Main {
                 }
                     break;
                 case 6: {
-                    return;
+                    weryfikacja();
                 }
             }
         }
     }
-
 
     public static void menuDyrektor() {
         while (true) {
@@ -427,6 +429,7 @@ public class Main {
             }
         }
     }
+
     public static void walidacjaPesel(String pesel){
         if(pesel.length() != 11){
             throw new NumberFormatException("Zly format peselu");

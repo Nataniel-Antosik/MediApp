@@ -76,7 +76,7 @@ public class Main {
 
                     break;
                 case 3:{
-
+                    Wyniki.Sprawdz_Wynikow();
                 }
                     break;
                 case 4: {

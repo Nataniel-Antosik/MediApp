@@ -1,9 +1,6 @@
 package Diagram_Klas;
 
-import javax.sound.midi.Receiver;
-import javax.xml.crypto.Data;
 import java.util.*;
-import Diagram_Klas.Main;
 
 public class Recepta_Elektorniczna {
 	private static Scanner scan = new Scanner(System.in);
@@ -16,6 +13,7 @@ public class Recepta_Elektorniczna {
 	public static String[][] Lek = new String[2][10];
 	public int klucz;
 	public String Pesel;
+	public int IloscLekarstw;
 
 	public Recepta_Elektorniczna(Pacjent p, String Lek[][], String data_Waznosci) {
 		//Diagram_Klas.Pacjent Pesel, int ID_Recepty_Elektronicznej, String Data_Waznosci, String[] Lek, int Klucz
@@ -23,13 +21,20 @@ public class Recepta_Elektorniczna {
 		this.klucz = generator.nextInt(1000000);
 		this.ID_Recepty_Elektronicznej = generator.nextInt(1000000);
 		this.Pesel = p.getPesel();
+		this.Data_Waznosci = data_Waznosci;
+		this.Lek = Lek;
+		this.IloscLekarstw = 0;
 	}
 	public void setData_Wizyty(String in) { Data_Waznosci = in; }
 	public void setLekarstwo(String[][] le) {Lek=le;}
+	public void setIloscLekarstw(int in) { IloscLekarstw = in; }
+
 	public int getID_Recepty_Elektronicznej(){ return ID_Recepty_Elektronicznej; }
 	public String getData_Waznosci() { return Data_Waznosci; }
 	public int getKlucz() { return klucz; }
 	public String getPesel() { return Pesel; }
+	public String getLekarstwo(int i, int j){ return Lek[i][j]; }
+	public int getIloscLekarstw() { return IloscLekarstw; }
 
 	public static void dodaj_Recepte(){
 		Pacjent tmp = new Pacjent();
@@ -53,6 +58,7 @@ public class Recepta_Elektorniczna {
 		System.out.println("Wpisz date waznosci: ");
 		String data_Waznosci = scan.next();
 		Recepta_Elektorniczna tmp2 = new Recepta_Elektorniczna(tmp, Lek, data_Waznosci);
+		tmp2.setIloscLekarstw(i);
 		Drukuj_Recepte(tmp2);
 	}
 
@@ -65,8 +71,12 @@ public class Recepta_Elektorniczna {
 		System.out.println("Nazwisko: " + pacjent.getNazwisko());
 		System.out.println("Adres zamieszkania: " + pacjent.adresZamieszkania);
 		System.out.println("ID recepty elektronicznej: "+ re.getID_Recepty_Elektronicznej());
+		System.out.println("Klucz recepty elektornicznej: " + re.getKlucz());
 		System.out.println("Data waznosci: " + re.getData_Waznosci());
-
+		System.out.println("Lekarstwa:");
+		System.out.println("(lekarstwo) (dawkowanie)");
+		for(int i = 0; i <= re.getIloscLekarstw(); i++)
+			System.out.println(re.getLekarstwo(0,i) + "   " + re.getLekarstwo(1,i));
 	}
-
+//95041201020
 }

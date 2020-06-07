@@ -55,7 +55,7 @@ public class Rejestracja_pracownikow {
 	}
 
 	public static void usun_Pracownika(HashMap<String, Pracownik> Baza_Pracownikow, String login) {
-			Baza_Pracownikow.remove(login);
+		Baza_Pracownikow.remove(login);
 	}
 
 	public static void modyfikuje_Dane_Pracownika() {
@@ -76,14 +76,13 @@ public class Rejestracja_pracownikow {
 					while (s) {
 						System.out.println("(1)Modyfikuj imie");
 						System.out.println("(2)Modyfikuj nazwisko");
-						System.out.println("(3)Modyfikuj PESEL");
-						System.out.println("(4)Modyfikuj numer telefonu");
-						System.out.println("(5)Modyfikuj date urodzenia");
-						System.out.println("(6)Modyfikuj email");
-						System.out.println("(7)Modyfikuj stanowisko");
-						System.out.println("(8)Modyfikuj haslo");
-						System.out.println("(9)Modyfikuj adres zamieszkania");
-						System.out.println("(10)Powrót");
+						System.out.println("(3)Modyfikuj numer telefonu");
+						System.out.println("(4)Modyfikuj date urodzenia");
+						System.out.println("(5)Modyfikuj email");
+						System.out.println("(6)Modyfikuj stanowisko");
+						System.out.println("(7)Modyfikuj haslo");
+						System.out.println("(8)Modyfikuj adres zamieszkania");
+						System.out.println("(9)Powrót");
 						int wybor2 = scan.nextInt();
 						switch (wybor2) {
 							case 1:
@@ -95,31 +94,28 @@ public class Rejestracja_pracownikow {
 								tmp.setNazwisko(nazwisko);
 								break;
 							case 3:
-								String pesel = scan.next();
-								Main.walidacjaPesel(pesel);
-								tmp.setPesel(pesel);
-							case 4:
 								String nr_telefonu = scan.next();
 								tmp.setNumer_Telefonu(nr_telefonu);
 								break;
-							case 5:
+							case 4:
 								String data_Urodzenia = scan.next();
 								tmp.setData_Urodzenia(data_Urodzenia);
-							case 6:
+								break;
+							case 5:
 								String mail = scan.next();
 								tmp.setMail(mail);
 								break;
-							case 7:
+							case 6:
 								String stanowisko = scan.next();
 								tmp.setStanowisko(stanowisko);
 								break;
-							case 8:
+							case 7:
 								String halso = scan.next();
 								tmp.setHaslo(halso);
-							case 9:
+							case 8:
 								String adres_Zamieszkania = scan.next();
 								tmp.setadresZamieszkania(adres_Zamieszkania);
-							case 10:
+							case 9:
 								s = false;
 						}
 					}

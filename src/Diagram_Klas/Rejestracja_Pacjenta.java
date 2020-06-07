@@ -87,6 +87,24 @@ public class Rejestracja_Pacjenta {
 			nowy.setMail(email);
 			break;
 		}
+		System.out.println("Podaj adres zamieszkania:");
+		while(true){
+			String address = stringinput.nextLine();
+			if(address.isBlank()){
+				continue;
+			}
+			nowy.setadresZamieszkania(address);
+			break;
+		}
+		System.out.println("Podaj kod pocztowy:");
+		while(true){
+			String ZIP = stringinput.nextLine();
+			if(ZIP.isBlank()){
+				continue;
+			}
+			nowy.setKodPocztowy(ZIP);
+			break;
+		}
 		System.out.println("Zatwierdz(1)/Anuluj(0)");
 
 		while(true){

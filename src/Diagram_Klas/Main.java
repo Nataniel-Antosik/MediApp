@@ -21,7 +21,8 @@ public class Main {
         System.out.println("Numer telefonu: " + o.getNumer_Telefonu());
         System.out.println("Data Urodzenia: " + o.getData_Urodzenia());
         System.out.println("Mail: " + o.getMail());
-        System.out.println(("Adres zamieszkania: "+ o.getadresZamieszkania()));
+        System.out.println("Adres zamieszkania: "+ o.getadresZamieszkania());
+        System.out.println("Kod pocztowy" + o.getKodPocztowy());
         if(o instanceof Pracownik) {
             Pracownik p = (Pracownik) o;
             System.out.println("Stanowisko: " + p.getStanowisko());
@@ -57,7 +58,6 @@ public class Main {
         );
         return tmp.get();
     }
-
 
 
     public static void menuLekarz() {
@@ -137,11 +137,13 @@ public class Main {
                 }
                     break;
                 case 6: {
-                    return;
+                    System.out.println("Zostales wylogowany");
+                    weryfikacja();
                 }
             }
         }
     }
+
     public static void menuDyrektor() {
         while (true) {
             System.out.println(" MENU ");
@@ -244,7 +246,9 @@ public class Main {
                                         System.out.println("(3)Modyfikuj numer telefonu");
                                         System.out.println("(4)Modyfikuj date urodzenia");
                                         System.out.println("(5)Modyfikuj email");
-                                        System.out.println("(6)Powrót");
+                                        System.out.println("(6)Modyfikuj adres zamieszkania");
+                                        System.out.println("(7)Modyfikuj kod pocztowy");
+                                        System.out.println("(8)Powrót");
                                         int wybor4 = scan.nextInt();
                                         switch (wybor4) {
                                             case 1:
@@ -299,6 +303,28 @@ public class Main {
                                                         continue;
                                                     }
                                                     pracownik.setImie(email);
+                                                    break;
+                                                }
+                                                break;
+                                            case 6:
+                                                System.out.println("Podaj nowy adres zamieszkania");
+                                                while (true) {
+                                                    String address = scan.nextLine();
+                                                    if (address.isBlank()) {
+                                                        continue;
+                                                    }
+                                                    pracownik.setadresZamieszkania(address);
+                                                    break;
+                                                }
+                                                break;
+                                            case 7:
+                                                System.out.println("Podaj nowy kod pocztowy");
+                                                while (true) {
+                                                    String ZIP = scan.nextLine();
+                                                    if (ZIP.isBlank()) {
+                                                        continue;
+                                                    }
+                                                    pracownik.setKodPocztowy(ZIP);
                                                     break;
                                                 }
                                                 break;
@@ -451,6 +477,7 @@ public class Main {
                 }
                     break;
                 case 6: {
+                    System.out.println("Zostales wylogowany");
                     weryfikacja();
                 }
                     break;
@@ -537,13 +564,13 @@ public class Main {
     public static void main(String[] args) {
         //Dodanie testowych osób do systemu Dyrektora Dermatologa i Pacjenta
         Pracownik test = new Pracownik();
-        Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", "Dyrektor", "stef@gmail.com" ,"grunwaldzka 4");
+        Pracownik d = new Pracownik("D168", "123456", "Stefan", "Kowalski", "99062506018", "999-000-000", "25.06.99", "Dyrektor", "stef@gmail.com" ,"grunwaldzka 4", "72-010");
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", "Lekarz", "Nowakowski@gmail.com", "slaska 3");
+        d = new Pracownik("L168", "654321", "Michal", "Nowak", "97011306112", "111-421-000", "13.01.97", "Lekarz", "Nowakowski@gmail.com", "slaska 3", "75-000");
         test.dodajPracownika(Baza_Pracownikow, d);
-        d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88",  "Recepcjonista", "Szurek@gmail.com", "piernikowa 24");
+        d = new Pracownik("R168", "654321", "Karol", "Szczur", "88011706112", "563-421-135", "17.01.88",  "Recepcjonista", "Szurek@gmail.com", "piernikowa 24","70-024");
         test.dodajPracownika(Baza_Pracownikow, d);
-        Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95", "Marian@gmail.com", "hamminga 124");
+        Pacjent p = new Pacjent("Marian","Kowalski","95041201020","931-321-324","12.04.95", "Marian@gmail.com", "hamminga 124", "72-004");
         dodajOsoba(Baza,p);
 
 

@@ -39,6 +39,7 @@ public class Recepta_Elektorniczna {
 		Pacjent tmp = new Pacjent();
 		System.out.println("Wpisz pesel pacjenta: ");
 		String pesel = scan.next();
+		Main.walidacjaPesel(pesel);
 		tmp = Main.znajdzPacjent(pesel);
 		System.out.println("Pesel, ID i klucz pacjenta zostal wpisany");
 		int i=0;

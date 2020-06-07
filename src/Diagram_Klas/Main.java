@@ -117,10 +117,11 @@ public class Main {
         while (true) {
             System.out.println(" MENU ");
             System.out.println("(1) Rejestracja pacjenta");
-            System.out.println("(2) Umowienie wizyty");
-            System.out.println("(3) Profil pracownika");
-            System.out.println("(4) Profil pacjenta");
-            System.out.println("(5) Wyloguj");
+            System.out.println("(2) Umow wizyte");
+            System.out.println("(3) Umowienie wizyty");
+            System.out.println("(4) Profil pracownika");
+            System.out.println("(5) Profil pacjenta");
+            System.out.println("(6) Wyloguj");
             int wybor = scan.nextInt();
             Scanner stringinput = new Scanner(System.in);
 
@@ -265,17 +266,20 @@ public class Main {
                     }
                 }
                     break;
-                case 4: {
+                case 4:
+
+                    break;
+                case 5:
                     System.out.println("Podaj PESEL pacjenta, którego chcesz wyszukać:");
                     String pesel;
-                    while (true) {
+                    while(true){
                         pesel = stringinput.nextLine();
-                        if (pesel.isBlank()) {
+                        if(pesel.isBlank()){
                             continue;
                         }
                         try {
                             walidacjaPesel(pesel);
-                        } catch (Exception e) {
+                        }catch(Exception e){
                             System.out.println(e.getMessage());
                             continue;
                         }
@@ -283,20 +287,21 @@ public class Main {
 
                     }
                     Pacjent temp = znajdzPacjent(pesel);
-                    if (temp == null) {
+                    if(temp == null){
                         System.out.println("Dany pacjent nie znajduje sie w bazie danych");
-                    } else {
-                        boolean stop = true;
-                        while (stop) {
+                    }
+                    else{
+                        boolean stop =true;
+                        while(stop) {
                             wypiszOsoba(temp);
                             System.out.println("(1)Modyfikuj dane pacjenta");
                             System.out.println("(2)Usuń pacjenta z bazy danych");
                             System.out.println("(3)Powrot");
                             int wybor2 = scan.nextInt();
-                            switch (wybor2) {
+                            switch(wybor2){
                                 case 1:
                                     boolean stop2 = true;
-                                    while (stop2) {
+                                    while(stop2){
                                         System.out.println("(1)Modyfikuj imie");
                                         System.out.println("(2)Modyfikuj nazwisko");
                                         System.out.println("(3)Modyfikuj PESEL");
@@ -305,10 +310,10 @@ public class Main {
                                         System.out.println("(6)Modyfikuj email");
                                         System.out.println("(7)Powrót");
                                         int wybor3 = scan.nextInt();
-                                        switch (wybor3) {
+                                        switch(wybor3){
                                             case 1:
                                                 System.out.println("Podaj nowe imie:");
-                                                while (true) {
+                                                while(true) {
                                                     String name = stringinput.nextLine();
                                                     if (name.isBlank()) {
                                                         continue;
@@ -319,7 +324,7 @@ public class Main {
                                                 break;
                                             case 2:
                                                 System.out.println("Podaj nowe nazwisko:");
-                                                while (true) {
+                                                while(true) {
                                                     String surname = stringinput.nextLine();
                                                     if (surname.isBlank()) {
                                                         continue;
@@ -330,7 +335,7 @@ public class Main {
                                                 break;
                                             case 3:
                                                 System.out.println("Podaj nowy PESEL:");
-                                                while (true) {
+                                                while(true) {
                                                     String id = stringinput.nextLine();
                                                     if (id.isBlank()) {
                                                         continue;
@@ -344,13 +349,13 @@ public class Main {
                                                     break;
                                                 }
                                                 Pacjent temp2 = Pacjent.copy(temp);
-                                                Rejestracja_Pacjenta.usun_Pacjenta(Baza, temp.getPesel());
-                                                dodajOsoba(Baza, temp2);
+                                                Rejestracja_Pacjenta.usun_Pacjenta(Baza,temp.getPesel());
+                                                dodajOsoba(Baza,temp2);
                                                 temp = znajdzPacjent(temp2.getPesel());
                                                 break;
                                             case 4:
                                                 System.out.println("Podaj nowy numer telefonu:");
-                                                while (true) {
+                                                while(true) {
                                                     String phoneNumber = stringinput.nextLine();
                                                     if (phoneNumber.isBlank()) {
                                                         continue;
@@ -361,7 +366,7 @@ public class Main {
                                                 break;
                                             case 5:
                                                 System.out.println("Podaj nowa date urodzenia:");
-                                                while (true) {
+                                                while(true) {
                                                     String birth = stringinput.nextLine();
                                                     if (birth.isBlank()) {
                                                         continue;
@@ -372,9 +377,9 @@ public class Main {
                                                 break;
                                             case 6:
                                                 System.out.println("Podaj nowy mail:");
-                                                while (true) {
+                                                while(true){
                                                     String email = stringinput.nextLine();
-                                                    if (email.isBlank()) {
+                                                    if(email.isBlank()){
                                                         continue;
                                                     }
                                                     temp.setImie(email);
@@ -389,23 +394,22 @@ public class Main {
 
                                     break;
                                 case 2:
-                                    Rejestracja_Pacjenta.usun_Pacjenta(Baza, pesel);
-                                    stop = false;
+                                    Rejestracja_Pacjenta.usun_Pacjenta(Baza,pesel);
+                                    stop=false;
                                     break;
                                 case 3:
-                                    stop = false;
+                                    stop=false;
                                     break;
                                 default:
-                                    stop = false;
+                                    stop=false;
                                     break;
                             }
                         }
                     }
-                }
                     break;
-                case 5: {
+                case 6: {
                     weryfikacja();
-                    break;
+
                 }
             }
         }

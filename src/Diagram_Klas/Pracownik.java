@@ -4,9 +4,6 @@ import java.util.*;
 
 public class Pracownik extends Osoba {
 
-	Collection<Badania> Badanie;
-	Collection<Recepta_Elektorniczna> Recepta_Elektroniczna;
-	Collection<Skierowanie> Skierowanie;
 	Map<String,HashMap<String,Wizyta>> Wizyta;
 	public String Stanowisko;
 	public String Login;
@@ -15,7 +12,6 @@ public class Pracownik extends Osoba {
 	public Pracownik(){}
 	public Pracownik(String Login, String Haslo, String Imie,String Nazwisko,String Pesel, String Numer_Telefonu, String Data_Urodzenia, String Stanowisko, String Mail, String adresZamieszkania, String kodPocztowy) {
 		super(Imie, Nazwisko, Pesel, Numer_Telefonu, Data_Urodzenia, Mail, adresZamieszkania, kodPocztowy);
-		// TODO - implement Pracownik.Pracownik
 		this.Login = Login;
 		this.Haslo = Haslo;
 		this.Stanowisko = Stanowisko;

@@ -4,9 +4,6 @@ import java.util.*;
 
 public class Pacjent extends Osoba {
 
-	Skierowanie Skierowanie;
-	Collection<Wizyta> Wizyta;
-	Recepta_Elektorniczna Recepta;
 	Historia_Chorob_Pacjenta Historia;
 
 	/**

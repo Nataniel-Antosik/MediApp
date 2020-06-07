@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Wizyta {
 
-	Pracownik Pracownik;
+
 	public int ID_Wizyta;
 	public String Data_Wizyty;
 	public boolean Status_Wizyty;
@@ -19,10 +19,9 @@ public class Wizyta {
 		this.ID_Wizyta = ID_Wizyta;
 	}
 
-	//public void setID_Pacjent(Pacjent ID_Pacjent) { ID_Pacjent = ID_Pacjent; }
+
 	public void setData_Wizyty(String in) {  Data_Wizyty = in; }
 	public void setStatus_Wizyty(boolean in) { Status_Wizyty = in; }
-	//public void setPracownik(Pracownik ID_Pracownik) { ID_Pracownik = ID_Pracownik; }
 	public void setID_Wizyta(int ID_Wizyta) { this.ID_Wizyta = ID_Wizyta; }
 
 
@@ -30,16 +29,49 @@ public class Wizyta {
 	public boolean getStatus_Wizyty() { return Status_Wizyty; }
 	public String getData_Wizyty() { return Data_Wizyty; }
 
-	public void Odwolywanie_Wizyty(Wizyta w) {
-		w.Status_Wizyty=false;
+	public static void wyswietlWizyty(Pracownik pracownik) {
+		Scanner scan = new Scanner(System.in);
+		String day = "";
+		boolean stop_main = true;
+		while(stop_main){
+			printCalendarMonthYear(Calendar. getInstance(). get(Calendar. MONTH)+1,Calendar. getInstance(). get(Calendar.YEAR));
+			System.out.println("\nPodaj dzien, z ktorego chcesz wyswietlic wizyty(liczbowo):");
+			boolean stop = true;
+			while (stop) {
+				day = scan.nextLine();
+				if (Integer.parseInt(day) < 1 || Integer.parseInt(day) < LocalDate.now().getDayOfMonth() || Integer.parseInt(day) > Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH)) {
+					System.out.println("Podano zly dzien, podaj jeszcze raz");
+					continue;
+				} else {
+					stop = false;
+				}
+			}
+			if (!pracownik.Wizyta.containsKey(day + "/" + String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR)))) {
+				HashMap<String, Wizyta> temp = new HashMap<>();
+				Wizyta numer1 = new Wizyta("10:00", true, 1);
+				Wizyta numer2 = new Wizyta("11:00", true, 2);
+				Wizyta numer3 = new Wizyta("12:00", true, 3);
+				temp.put(numer1.Data_Wizyty, numer1);
+				temp.put(numer2.Data_Wizyty, numer2);
+				temp.put(numer3.Data_Wizyty, numer3);
+				pracownik.Wizyta.put(day + "/" + String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR)), temp);
+				if(wyswietlWszystkie(pracownik.Wizyta.get(day + "/" + String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR))))){
+					stop_main = false;
+				}
+			} else {
+				if(wyswietlWszystkie(pracownik.Wizyta.get(day + "/" + String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR))))){
+					stop_main = false;
+				}
+			}
+		}
 	}
+
 
 	public static void umowWizyte(Pracownik pracownik, Pacjent pacjent){
 		printCalendarMonthYear(Calendar. getInstance(). get(Calendar. MONTH)+1,Calendar. getInstance(). get(Calendar.YEAR));
 
 		Scanner scan = new Scanner(System.in);
 		String day="";
-		String hour;
 		boolean stop_main = true;
 		while(stop_main) {
 			System.out.println("\nPodaj dzien umowienia wizyty(liczbowo):");
@@ -103,6 +135,8 @@ public class Wizyta {
 			} else {
 				System.out.print("  ");
 			}}}
+
+
 	public static boolean wypiszDostepne(HashMap<String,Wizyta> godziny){
 		Scanner scanner = new Scanner(System.in);
 
@@ -185,6 +219,122 @@ public class Wizyta {
 			}
 		}
 				return false;
+	}
+	public static boolean wyswietlWszystkie(HashMap<String,Wizyta> godziny){
+		Scanner scanner = new Scanner(System.in);
+
+		List<String> keys_zajete = new ArrayList<String>();
+		List<String> keys_wolne = new ArrayList<String>();
+
+		for(String key : godziny.keySet()){
+			{
+				if(godziny.get(key).Status_Wizyty){
+					System.out.println(godziny.get(key).ID_Wizyta + " " + godziny.get(key).Data_Wizyty + " wolna");
+					keys_wolne.add(key);
+				}
+				else{
+					System.out.println(godziny.get(key).ID_Wizyta + " " + godziny.get(key).Data_Wizyty + " zajeta");
+					keys_zajete.add(key);
+				}
+			}
+		}
+		if(keys_zajete.isEmpty()){
+			System.out.println("(Dowolna cyfra)Powrot");
+			int wybor = scanner.nextInt();
+			switch(wybor){
+				default:
+					return true;
+			}
+		}
+		else{
+			System.out.println("(1)Odwolaj wizyte");
+			System.out.println("(2)Powrot");
+			int wybor = scanner.nextInt();
+			switch(wybor){
+				case 1:{
+					System.out.println("Ktora wizyte chcesz odwolac?");
+
+					if(keys_zajete.size()==1){
+						System.out.println("(1)" + godziny.get(keys_zajete.get(0)).Data_Wizyty);
+						System.out.println("(2)Powrot");
+						int wybor_2 = scanner.nextInt();
+						switch(wybor_2){
+							case 1 :{
+								godziny.get(keys_zajete.get(0)).setStatus_Wizyty(true);
+								keys_zajete.remove(0);
+								return true;
+							}
+							case 2:{
+								return true;
+							}
+							default:{
+								return true;
+							}
+						}
+					}
+					else if(keys_zajete.size()==2){
+						System.out.println(godziny.get(keys_zajete.get(0)).ID_Wizyta + " " + godziny.get(keys_zajete.get(0)).Data_Wizyty);
+						System.out.println(godziny.get(keys_zajete.get(1)).ID_Wizyta + " " + godziny.get(keys_zajete.get(1)).Data_Wizyty);
+						System.out.println("(3)Powrot");
+						int wybor_2 = scanner.nextInt();
+						switch(wybor_2){
+							case 1 :{
+								godziny.get(keys_zajete.get(0)).setStatus_Wizyty(true);
+								keys_zajete.remove(0);
+								return true;
+							}
+							case 2:{
+								godziny.get(keys_zajete.get(1)).setStatus_Wizyty(true);
+								keys_zajete.remove(1);
+								return true;
+							}
+							case 3:{
+								return true;
+							}
+							default:{
+								return true;
+							}
+						}
+					}
+					else if(keys_zajete.size()==3){
+						System.out.println("(1)" + godziny.get(keys_zajete.get(0)).Data_Wizyty);
+						System.out.println("(2)" + godziny.get(keys_zajete.get(1)).Data_Wizyty);
+						System.out.println("(3)" + godziny.get(keys_zajete.get(2)).Data_Wizyty);
+						System.out.println("(4)Powrot");
+						int wybor_2 = scanner.nextInt();
+						switch(wybor_2){
+							case 1 :{
+								godziny.get(keys_zajete.get(0)).setStatus_Wizyty(true);
+								keys_zajete.remove(0);
+								return true;
+							}
+							case 2:{
+								godziny.get(keys_zajete.get(1)).setStatus_Wizyty(true);
+								keys_zajete.remove(1);
+								return true;
+							}
+							case 3:{
+								godziny.get(keys_zajete.get(2)).setStatus_Wizyty(true);
+								keys_zajete.remove(2);
+								return true;
+							}
+							default:{
+								return true;
+							}
+						}
+
+					}
+				}break;
+				case 2:{
+					return true;
+				}
+
+				default:{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
 

@@ -59,7 +59,6 @@ public class Main {
         return tmp.get();
     }
 
-
     public static void menuLekarz() {
         while (true) {
             System.out.println(" MENU ");
@@ -183,7 +182,7 @@ public class Main {
                     Rejestracja_Pacjenta.dodaj_Pacjenta(Baza);
                 }
                     break;
-                case 2:{
+                case 2: {
                     System.out.println("Podaj login pracownika, u którego chcesz umowic wizyte:");
                     String login;
                     while (true) {
@@ -194,7 +193,12 @@ public class Main {
                         break;
                     }
                     Pracownik pracownik = znajdzPracownika(login);
+                    if(pracownik == null){
+                        System.out.println("Dany pracownik nie znajduje sie w bazie danych");
+                        break;
+                    }
                     System.out.println("Podaj pesel pacjenta, który chce umówić wizyte:");
+
                     String pesel;
                     while(true) {
                         pesel = scan.nextLine();
@@ -210,10 +214,30 @@ public class Main {
                         break;
                     }
                     Pacjent pacjent = znajdzPacjent(pesel);
+                    if(pacjent == null){
+                        System.out.println("Dany pacjent nie znajduje sie w bazie danych");
+                        break;
+                    }
                     Wizyta.umowWizyte(pracownik,pacjent);
                 }
                     break;
-                case 3:
+                case 3: {
+                    System.out.println("Podaj login pracownika, którego wizyty chcesz wyświetlić");
+                    String login;
+                    while (true) {
+                        login = scan.nextLine();
+                        if (login.isBlank()) {
+                            continue;
+                        }
+                        break;
+                    }
+                    Pracownik pracownik = znajdzPracownika(login);
+                    if(pracownik == null){
+                        System.out.println("Dany pracownik nie znajduje sie w bazie danych");
+                        break;
+                    }
+                    Wizyta.wyswietlWizyty(pracownik);
+                }
                     break;
                 case 4: {
                     System.out.println("Podaj login pracownika, ktorego chcesz wyszukac:");
@@ -574,7 +598,7 @@ public class Main {
         dodajOsoba(Baza,p);
 
 
-        weryfikacja();
+        menuRecepcjonista();
     }
 }
 

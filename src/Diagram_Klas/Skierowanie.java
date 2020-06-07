@@ -6,7 +6,7 @@ import java.util.*;
 public class Skierowanie {
 
 	Pracownik Wydajacy;
-	Collection<Pacjent> Pacjent;
+	Pacjent Pacjent;
 	public int ID_Skierowania;
 	public Data Data_Skierowania;
 	public String Opis;

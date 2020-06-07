@@ -15,7 +15,6 @@ public class Rejestracja_Pacjenta {
 	public static void usun_Pacjenta(HashMap<String, Pacjent> Baza,String pesel) {
 		Baza.remove(pesel);
 	}
-
 	public static void dodaj_Pacjenta(HashMap<String, Pacjent> Baza) {
 		Scanner stringinput = new Scanner(System.in);
 		Pacjent nowy = new Pacjent();

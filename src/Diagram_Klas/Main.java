@@ -136,6 +136,7 @@ public class Main {
                 }
                     break;
                 case 6: {
+                    System.out.println("Zostales wylogowany");
                     weryfikacja();
                 }
             }
@@ -448,8 +449,8 @@ public class Main {
                 }
                     break;
                 case 6: {
+                    System.out.println("Zostales wylogowany");
                     weryfikacja();
-
                 }
             }
         }

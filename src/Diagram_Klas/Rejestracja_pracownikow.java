@@ -81,7 +81,9 @@ public class Rejestracja_pracownikow {
 						System.out.println("(5)Modyfikuj date urodzenia");
 						System.out.println("(6)Modyfikuj email");
 						System.out.println("(7)Modyfikuj stanowisko");
-						System.out.println("(8)Powrót");
+						System.out.println("(8)Modyfikuj haslo");
+						System.out.println("(9)Modyfikuj adres zamieszkania");
+						System.out.println("(10)Powrót");
 						int wybor2 = scan.nextInt();
 						switch (wybor2) {
 							case 1:
@@ -112,6 +114,12 @@ public class Rejestracja_pracownikow {
 								tmp.setStanowisko(stanowisko);
 								break;
 							case 8:
+								String halso = scan.next();
+								tmp.setHaslo(halso);
+							case 9:
+								String adres_Zamieszkania = scan.next();
+								tmp.setadresZamieszkania(adres_Zamieszkania);
+							case 10:
 								s = false;
 						}
 					}

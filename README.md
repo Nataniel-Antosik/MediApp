@@ -2,7 +2,7 @@
 
 ## General Info 
 
-Team project for an engineering subject at the West Pomeranian University of Technology in Szczecin. The application is used to manage the clinic.
+'Software Engineering' course at the West Pomeranian University of Technology in Szczecin. The application is used to manage a clinic.
 
 ## Main features
 * Patient medical history
